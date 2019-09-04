@@ -2,6 +2,13 @@
   "parser": "babel-eslint",
   "extends": ["airbnb", "prettier"],
   "plugins": [],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  },
   "rules": {
     "arrow-body-style": "off",
     "consistent-return": "off",
@@ -39,6 +46,8 @@
     "react/jsx-filename-extension": "off",
     "react/require-default-props": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-children-prop": "off",
     "react/button-has-type": "off"
   },
   "globals": {
