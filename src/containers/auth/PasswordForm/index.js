@@ -18,14 +18,13 @@ class PasswordForm extends Component {
     const { onSubmit } = this.props;
 
     this.setState({ error: null });
-    actions.setSubmitting(true);
     try {
       await onSubmit(values);
     } catch (e) {
       console.error(e);
-      actions.setSubmitting(false);
       this.setState({ error: 'Password is wrong' });
     }
+    actions.setSubmitting(false);
   };
 
   renderForm = ({ isValid, isSubmitting }) => {

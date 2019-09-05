@@ -4,10 +4,9 @@ import { Formik, Field, Form } from 'formik';
 import { Box } from 'rebass';
 import { Button, AlertPanel } from 'components/common';
 import { InputField } from 'components/formik';
-import request from 'api/request';
 import schema from './schema';
 
-class EmailForm extends Component {
+class SpaceForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,18 +15,16 @@ class EmailForm extends Component {
   }
 
   handleSubmit = async (values, actions) => {
-    const { onSubmit, ignoreUserCheck } = this.props;
+    const { onSubmit } = this.props;
 
     this.setState({ error: null });
-    actions.setSubmitting(true);
-    const resp = await request('auth', 'checkEmail', [values.email]);
-    actions.setSubmitting(false);
-
-    if (ignoreUserCheck || resp.ok) {
-      return onSubmit(values, resp.ok);
+    try {
+      await onSubmit(values);
+    } catch (e) {
+      console.error(e);
+      this.setState({ error: e.message });
     }
-
-    this.setState({ error: 'User does not exist' });
+    actions.setSubmitting(false);
   };
 
   renderForm = ({ isValid, isSubmitting }) => {
@@ -37,7 +34,8 @@ class EmailForm extends Component {
     return (
       <Box as={Form} {...formProps}>
         <AlertPanel children={error} />
-        <Field component={InputField} name="email" type="email" label="Email" />
+        <Field component={InputField} name="name" label="Space name" />
+        <Field component={InputField} name="slug" label="Space url" />
         <Button loading={isSubmitting} disabled={!isValid} type="submit">
           {buttonText}
         </Button>
@@ -50,7 +48,11 @@ class EmailForm extends Component {
 
     return (
       <Formik
-        initialValues={{ email: '', ...initialValues }}
+        initialValues={{
+          name: '',
+          slug: '',
+          ...initialValues
+        }}
         onSubmit={this.handleSubmit}
         validationSchema={schema}
         render={this.renderForm}
@@ -59,16 +61,15 @@ class EmailForm extends Component {
   }
 }
 
-EmailForm.propTypes = {
+SpaceForm.propTypes = {
   formProps: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
-  ignoreUserCheck: PropTypes.bool,
   buttonText: PropTypes.string
 };
 
-EmailForm.defaultProps = {
+SpaceForm.defaultProps = {
   buttonText: 'Submit'
 };
 
-export default EmailForm;
+export default SpaceForm;

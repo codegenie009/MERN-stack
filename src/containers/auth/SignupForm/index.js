@@ -4,10 +4,15 @@ import { Formik, Field, Form } from 'formik';
 import { Box } from 'rebass';
 import { Button, AlertPanel } from 'components/common';
 import { InputField } from 'components/formik';
-import request from 'api/request';
 import schema from './schema';
 
-class EmailForm extends Component {
+const INITIAL_VALUES = {
+  firstName: '',
+  lastName: '',
+  password: ''
+};
+
+class SignupForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,18 +21,17 @@ class EmailForm extends Component {
   }
 
   handleSubmit = async (values, actions) => {
-    const { onSubmit, ignoreUserCheck } = this.props;
+    const { onSubmit } = this.props;
 
     this.setState({ error: null });
     actions.setSubmitting(true);
-    const resp = await request('auth', 'checkEmail', [values.email]);
-    actions.setSubmitting(false);
-
-    if (ignoreUserCheck || resp.ok) {
-      return onSubmit(values, resp.ok);
+    try {
+      await onSubmit(values);
+    } catch (e) {
+      console.error(e);
+      this.setState({ error: e.message });
     }
-
-    this.setState({ error: 'User does not exist' });
+    actions.setSubmitting(false);
   };
 
   renderForm = ({ isValid, isSubmitting }) => {
@@ -37,8 +41,15 @@ class EmailForm extends Component {
     return (
       <Box as={Form} {...formProps}>
         <AlertPanel children={error} />
-        <Field component={InputField} name="email" type="email" label="Email" />
-        <Button loading={isSubmitting} disabled={!isValid} type="submit">
+        <Field component={InputField} name="firstName" label="First Name" />
+        <Field component={InputField} name="lastName" label="Last Name" />
+        <Field
+          component={InputField}
+          name="password"
+          type="password"
+          label="Password"
+        />
+        <Button loading={isSubmitting} disabled={isValid} type="submit">
           {buttonText}
         </Button>
       </Box>
@@ -50,7 +61,10 @@ class EmailForm extends Component {
 
     return (
       <Formik
-        initialValues={{ email: '', ...initialValues }}
+        initialValues={{
+          ...INITIAL_VALUES,
+          ...initialValues
+        }}
         onSubmit={this.handleSubmit}
         validationSchema={schema}
         render={this.renderForm}
@@ -59,16 +73,15 @@ class EmailForm extends Component {
   }
 }
 
-EmailForm.propTypes = {
+SignupForm.propTypes = {
   formProps: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
-  ignoreUserCheck: PropTypes.bool,
   buttonText: PropTypes.string
 };
 
-EmailForm.defaultProps = {
+SignupForm.defaultProps = {
   buttonText: 'Submit'
 };
 
-export default EmailForm;
+export default SignupForm;
