@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import MainActions, { MainSelectors } from './redux/MainRedux';
-import request from './api/request';
+import MainActions, { MainSelectors } from 'redux/MainRedux';
+import request from 'api/request';
+import { MainLayout, Header } from 'containers/layout';
+import { LoadingContainer } from 'components/common';
 
-// @TODO routing, guest/user/admin routes
-// @TODO manage loading state of the app
+import Home from 'pages/home';
+import SpaceCreate from 'pages/spaces/create';
+import AuthRoutes from 'pages/auth';
+
 // @TODO manage loading state of API with linear progress
-// @TODO layouting with header and body
 class App extends Component {
   componentDidMount() {
     this.startup();
@@ -17,7 +20,7 @@ class App extends Component {
 
   startup = async () => {
     const { setLoaded, setUser } = this.props;
-    const token = Cookies.get('token');
+    const token = Cookies.get('memorial-token');
 
     if (token) {
       const resp = await request('profile', 'get');
@@ -28,15 +31,56 @@ class App extends Component {
     setLoaded(true);
   };
 
+  renderGuestRoutes() {
+    return (
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/auth" component={AuthRoutes} />
+        <Route path="/space-create" component={SpaceCreate} />
+        <Route render={() => <Redirect to="/auth/login" />} />
+      </Switch>
+    );
+  }
+
+  renderUserRoutes() {
+    return (
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/auth" component={AuthRoutes} />
+        <Route path="/space-create" component={SpaceCreate} />
+        <Route render={() => <Redirect to="/" />} />
+      </Switch>
+    );
+  }
+
+  renderContent = () => {
+    const { isLoggedin } = this.props;
+
+    if (isLoggedin) {
+      return this.renderUserRoutes();
+    }
+
+    return this.renderGuestRoutes();
+  };
+
   render() {
-    return <h1>Hello rembrance!</h1>;
+    const { loaded } = this.props;
+
+    return (
+      <MainLayout>
+        <Header />
+        <LoadingContainer loading={!loaded}>
+          {this.renderContent}
+        </LoadingContainer>
+      </MainLayout>
+    );
   }
 }
 
 App.propTypes = {
-  // loaded: PropTypes.bool,
+  loaded: PropTypes.bool,
   // loading: PropTypes.bool,
-  // isLoggedin: PropTypes.bool,
+  isLoggedin: PropTypes.bool,
   setLoaded: PropTypes.func,
   setUser: PropTypes.func
 };

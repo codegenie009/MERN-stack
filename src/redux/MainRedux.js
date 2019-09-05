@@ -1,4 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce';
+import Cookies from 'js-cookie';
 import get from 'lodash/get';
 
 /* --------------------- Types and Action Creators ---------------- */
@@ -10,6 +11,20 @@ const { Types, Creators } = createActions({
 
 export const MainTypes = Types;
 
+Creators.setLogin = (token, user) => {
+  return dispatch => {
+    Cookies.set('memorial-token', token);
+    return Promise.resolve(dispatch(Creators.setUser(user)));
+  };
+};
+
+Creators.setLogout = () => {
+  return dispatch => {
+    Cookies.remove('memorial-token');
+    return Promise.resolve(dispatch(Creators.setUser(null)));
+  };
+};
+
 export default Creators;
 
 /* --------------------- Selectors ---------------- */
@@ -18,8 +33,8 @@ export const MainSelectors = {
   selectLoaded: state => state.main.loaded,
   selectToken: state => state.main.token,
   selectUser: state => state.main.user,
-  selectUsername: state => get(state, 'main.user.nickname', ''),
   selectEmail: state => get(state, 'main.user.email', ''),
+  selectRole: state => get(state, 'main.user.role', ''),
   selectLoggedIn: state => !!get(state, 'main.user'),
   selectVerified: state => get(state, 'main.user.verified', false)
 };
