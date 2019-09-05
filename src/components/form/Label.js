@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from 'rebass';
+import { Label as RebassLabel } from '@rebass/forms';
 
-const Label = props => <Text as="label" {...props} />;
+const Label = props => <RebassLabel {...props} />;
 
 export default Label;

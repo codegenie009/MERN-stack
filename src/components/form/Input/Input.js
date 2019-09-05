@@ -1,11 +1,6 @@
 import React from 'react';
-import { Box } from 'rebass';
+import { Input as RebassInput } from '@rebass/forms';
 
-const Input = props => <Box {...props} />;
-
-Input.defaultProps = {
-  type: 'text',
-  as: 'input'
-};
+const Input = props => <RebassInput {...props} />;
 
 export default Input;
