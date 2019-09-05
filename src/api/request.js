@@ -1,12 +1,14 @@
 import Cookies from 'js-cookie';
 import createProfileApi from './ProfileApi';
 import createAuthApi from './AuthApi';
+import createSpaceApi from './SpaceApi';
 
 import { getStore } from '../redux/store';
 import MainActions from '../redux/MainRedux';
 
 const API_MAP = {
   auth: createAuthApi,
+  space: createSpaceApi,
   profile: createProfileApi
 };
 

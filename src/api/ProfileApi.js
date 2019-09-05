@@ -5,7 +5,7 @@ export default token => {
     baseURL: `${process.env.REACT_APP_BACKEND_URL}/profile`,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: token
+      Authorization: `Bearer ${token}`
     },
     responseType: 'json'
   });
