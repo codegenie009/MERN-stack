@@ -1,7 +1,7 @@
 import React from 'react';
 import withAuth from 'hocs/withAuth';
 import SpaceForm from 'containers/auth/SpaceForm';
-import request from 'api/request';
+import request, { refreshProfile } from 'api/request';
 import { goToPage } from 'utils/history';
 
 function SpaceCreate() {
@@ -15,6 +15,7 @@ function SpaceCreate() {
 
     if (resp.ok) {
       // @TODO go to space page
+      await refreshProfile();
       goToPage('/account/spaces');
     } else {
       throw new Error(resp.data.message);
