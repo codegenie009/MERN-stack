@@ -27,3 +27,13 @@ export default async function request(apiName, func, params = [], apiOptions) {
   store.dispatch(MainActions.setLoading(false));
   return resp;
 }
+
+export async function refreshProfile() {
+  const store = getStore();
+  const resp = await request('profile', 'get');
+  if (resp.ok) {
+    store.dispatch(MainActions.setUser(resp.data));
+  }
+
+  return resp.data;
+}
