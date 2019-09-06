@@ -33,6 +33,11 @@ export const MainSelectors = {
   selectLoaded: state => state.main.loaded,
   selectToken: state => state.main.token,
   selectUser: state => state.main.user,
+  selectPermissions: state => get(state, 'main.user.permissions', []),
+  selectSpaces: state =>
+    get(state, 'main.user.permissions', [])
+      .filter(p => p.space)
+      .map(p => p.space),
   selectEmail: state => get(state, 'main.user.email', ''),
   selectRole: state => get(state, 'main.user.role', ''),
   selectLoggedIn: state => !!get(state, 'main.user'),
