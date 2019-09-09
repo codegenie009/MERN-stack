@@ -2,20 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Box, Button } from 'rebass';
+import { FluidContainer } from 'components/common';
+import { Box, Flex, Text, Button } from 'rebass';
 import MainActions, { MainSelectors } from 'redux/MainRedux';
 
 const Header = ({ isLoggedIn, user, setLogout, ...props }) => {
   return (
-    <Box {...props}>
-      Rembrance Logo
-      {isLoggedIn && <Button onClick={setLogout}>Logout</Button>}
-      {isLoggedIn ? (
-        `Hello, ${user.firstName}`
-      ) : (
-        <Link to="/auth/login">Login</Link>
-      )}
-    </Box>
+    <FluidContainer
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="space-between"
+      height={98}
+      {...props}
+    >
+      <Box as={Link} to="/">
+        <Box as="img" display="block" src="/logo-full.svg" alt="logo" />
+      </Box>
+      <Flex alignItems="center">
+        <Text variant="headerlink" mr={33}>
+          Premium
+        </Text>
+        <Text variant="headerlink" mr={33}>
+          Help
+        </Text>
+        {!isLoggedIn && (
+          <Text as={Link} to="/auth/login" variant="headerlink" mr={33}>
+            Sign In
+          </Text>
+        )}
+        {isLoggedIn && (
+          <Text as={Link} to="/account/spaces" variant="headerlink" mr={33}>
+            Account
+          </Text>
+        )}
+        <Button as={Link} to="/space-create" variant="secondary">
+          Create Memorial
+        </Button>
+        {isLoggedIn && <Button onClick={setLogout}>Logout</Button>}
+      </Flex>
+    </FluidContainer>
   );
 };
 

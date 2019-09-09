@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box } from 'rebass';
+import { FluidContainer } from 'components/common';
 
 const Content = props => {
-  return <Box py={3} {...props} />;
+  return <FluidContainer py={100} {...props} />;
 };
 
 export default Content;
