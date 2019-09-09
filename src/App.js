@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import MainActions, { MainSelectors } from 'redux/MainRedux';
 import { refreshProfile } from 'api/request';
-import { MainLayout, Header } from 'containers/layout';
+import { MainLayout, Footer, Header } from 'containers/layout';
 import { LoadingContainer } from 'components/common';
 
 import Home from 'pages/home';
@@ -71,6 +71,7 @@ class App extends Component {
         <LoadingContainer loading={!loaded}>
           {this.renderContent}
         </LoadingContainer>
+        <Footer />
       </MainLayout>
     );
   }
