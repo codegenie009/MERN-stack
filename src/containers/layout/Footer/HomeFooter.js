@@ -3,12 +3,12 @@ import { Box, Text, Flex } from 'rebass';
 import { FluidContainer, MagicLink } from 'components/common';
 import FOOTER_LINKS from './footer-links';
 
-function Footer() {
+function HomeFooter() {
   return (
     <Box
       width={1}
       sx={{
-        borderTopColor: 'borderfooter',
+        borderTopColor: 'divider',
         borderTopWidth: 1,
         borderTopStyle: 'solid'
       }}
@@ -29,4 +29,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default HomeFooter;

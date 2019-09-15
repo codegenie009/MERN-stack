@@ -31,3 +31,10 @@ export default [
     ]
   }
 ];
+
+export const SIMPLE_FOOTER = [
+  { children: 'Privacy', to: '/' },
+  { children: 'Contact', to: '/' },
+  { children: 'Terms', to: '/' },
+  { children: 'Help', to: '/' }
+];
