@@ -11,10 +11,10 @@ const { Types, Creators } = createActions({
 
 export const MainTypes = Types;
 
-Creators.setLogin = (token, user) => {
-  return dispatch => {
+Creators.setLogin = token => {
+  return () => {
     Cookies.set('memorial-token', token);
-    return Promise.resolve(dispatch(Creators.setUser(user)));
+    return Promise.resolve();
   };
 };
 
@@ -37,7 +37,10 @@ export const MainSelectors = {
   selectSpaces: state =>
     get(state, 'main.user.permissions', [])
       .filter(p => p.space)
-      .map(p => p.space),
+      .map(p => ({
+        ...p.space,
+        role: p.role
+      })),
   selectEmail: state => get(state, 'main.user.email', ''),
   selectRole: state => get(state, 'main.user.role', ''),
   selectLoggedIn: state => !!get(state, 'main.user'),
