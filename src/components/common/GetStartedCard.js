@@ -6,13 +6,15 @@ function GetStartedCard({ title, icon, children }) {
   return (
     <Flex
       variant="card"
-      width={['calc(25% - 30px)']}
+      width={[1, 'calc(25% - 30px)']}
       textAlign="center"
       flexDirection="column"
       alignItems="center"
       pt={50}
       px={20}
-      height={300}
+      pb={[50, 0]}
+      my={[20, 0]}
+      height={['initial', 300]}
     >
       <Text as="i" fontSize={40} className={`far fa-${icon}`} mb={25} />
       <Text variant="h4" mb={15}>

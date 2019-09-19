@@ -1,7 +1,10 @@
 import range from 'lodash/range';
+import breakpoints from './breakpoints';
 
 const theme = {
+  breakpoints,
   colors: {
+    brand: '#383a44',
     background: '#ffffff',
     background2: '#fbfbfb',
     text: '#383a44',
@@ -14,7 +17,8 @@ const theme = {
     border: '#cccccc',
     border2: '#f0f0f0',
     border3: '#fafafa',
-    borderfooter: '#ebebeb',
+    borderinput: '#DBD9DF',
+    divider: '#ebebeb',
     primary: '#383a44',
     backdrop: 'rgba(0, 0, 0, 0.4)',
     transparent: 'transparent'
@@ -45,6 +49,9 @@ const theme = {
     card2: '0px 0px 6px rgba(0, 0, 0, 0.07)'
   },
   // rebass variants
+  sizes: {
+    spacethumb: 196
+  },
   text: {
     h1: {
       fontWeight: 'bold',
@@ -65,6 +72,10 @@ const theme = {
       fontWeight: 'bold',
       fontSize: 18
     },
+    title: {
+      fontWeight: 'bold',
+      fontSize: 20
+    },
     body: {
       fontWeight: 'regular',
       fontSize: 20
@@ -80,7 +91,7 @@ const theme = {
       lineHeight: '24px'
     },
     body4: {
-      fontWeight: 'regular',
+      fontWeight: 'medium',
       fontSize: 16,
       lineHeight: '24px'
     },
@@ -101,9 +112,7 @@ const theme = {
     },
     link: {
       color: 'link',
-      '&:hover': {
-        textDecoration: 'underline'
-      }
+      textDecoration: 'underline'
     },
     headerlink: {
       fontSize: 15,
@@ -124,9 +133,17 @@ const theme = {
     }
   },
   variants: {
-    imagecard: {
+    dropdownmenu: {
+      boxShadow: 'card',
       bg: 'background',
-      boxShadow: 'card'
+      borderRadius: 'default',
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderColor: 'border2'
+    },
+    imagecard: {
+      bg: 'background'
+      // boxShadow: 'card'
     },
     card: {
       bg: 'background',
@@ -134,6 +151,18 @@ const theme = {
       borderWidth: 1,
       borderStyle: 'solid',
       borderColor: 'border2'
+    },
+    spacethumb: {
+      width: 'spacethumb',
+      height: 'spacethumb',
+      borderRadius: 'default'
+    },
+    hasDivider: {
+      '& + &': {
+        borderTopWidth: 1,
+        borderTopStyle: 'solid',
+        borderTopColor: 'divider'
+      }
     }
   },
   buttons: {
@@ -141,33 +170,58 @@ const theme = {
       borderRadius: 'button',
       boxShadow: 'card',
       transition: 'all .3s ease-in-out',
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderColor: 'primary',
+      cursor: 'pointer',
+      px: 24,
+      py: 12,
+      fontSize: 15,
+      lineHeight: '18px',
       '&:hover,:focus': {
         color: 'background',
         bg: 'highlight'
       }
     },
+    headerlink: {
+      fontSize: 15,
+      p: 0,
+      fontWeight: 'medium',
+      color: 'text3',
+      bg: 'background',
+      cursor: 'pointer',
+      textDecoration: 'none',
+      transition: 'all .3s ease-in-out',
+      '&:hover': {
+        color: 'highlight'
+      }
+    },
     primary: {
       variant: 'buttons.base',
+      color: 'background',
+      bg: 'primary'
+    },
+    home: {
+      variant: 'buttons.primary',
       px: 32,
       py: 16,
       fontSize: 16,
       fontWeight: 'medium',
-      lineHeight: '19px',
-      color: 'background',
-      bg: 'primary'
+      lineHeight: '19px'
     },
     secondary: {
       variant: 'buttons.base',
       bg: 'transparent',
       color: 'primary',
-      fontWeight: 'medium',
+      fontWeight: 'medium'
+    }
+  },
+  images: {},
+  form: {
+    input: {
       borderWidth: 1,
       borderStyle: 'solid',
-      borderColor: 'primary',
-      px: 24,
-      py: 12,
-      fontSize: 15,
-      lineHeight: '18px'
+      borderColor: 'borderinput'
     }
   },
   styles: {

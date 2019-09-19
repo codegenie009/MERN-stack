@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import EmailForm from 'containers/auth/EmailForm';
 import PasswordForm from 'containers/auth/PasswordForm';
 import SignupForm from 'containers/auth/SignupForm';
-import request from 'api/request';
+import request, { refreshProfile } from 'api/request';
 import { getQueryParam } from 'utils/history';
 import MainActions from 'redux/MainRedux';
 
@@ -23,8 +23,9 @@ function Login({ history, setLogin }) {
     setStep(1);
   };
 
-  const handleSubmit = (token, user) => {
+  const handleSubmit = async (token, user) => {
     setLogin(token, user);
+    await refreshProfile();
 
     const redirectUri = getQueryParam('redirect_uri');
     history.push(redirectUri || '/account/spaces');
@@ -37,7 +38,7 @@ function Login({ history, setLogin }) {
       throw new Error(resp.data);
     }
 
-    handleSubmit(resp.data.token, resp.data.user);
+    await handleSubmit(resp.data.token);
   };
 
   const handleSignup = async values => {
@@ -47,7 +48,7 @@ function Login({ history, setLogin }) {
       throw new Error(resp.data);
     }
 
-    handleSubmit(resp.data.token, resp.data.user);
+    await handleSubmit(resp.data.token);
   };
 
   if (step === 0) {

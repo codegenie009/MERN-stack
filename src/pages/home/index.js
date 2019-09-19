@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Flex, Box, Text, Button } from 'rebass';
-import { FluidContainer, GetStartedCard } from 'components/common';
+import { FluidContainer, GetStartedCard, HomeRow } from 'components/common';
 import { Content } from 'containers/layout';
 
 const GET_STARTED_CARDS = [
@@ -28,107 +28,77 @@ const GET_STARTED_CARDS = [
   }
 ];
 
-const HomeRow = props => (
-  <FluidContainer
-    pt={112}
-    pb={112}
-    flexDirection="row"
-    sx={{
-      borderBottomColor: 'border3',
-      borderBottomWidth: 1,
-      borderBottomStyle: 'solid'
-    }}
-    alignItems="center"
-    {...props}
-  />
-);
+const HOME_ROWS = [
+  {
+    title: 'Beautiful, online memorials',
+    description:
+      'Celebrate a life with friends and family through a private, online memorial — for free.',
+    src: '/hero-compressed.jpg',
+    titleVariant: 'h1',
+    children: (
+      <Button
+        as={Link}
+        to="/space-create"
+        variant="home"
+        width={[1, 'initial']}
+        mb={[56, 0]}
+      >
+        Create Memorial
+      </Button>
+    )
+  },
+  {
+    title: 'Share a private memorial with friends and family',
+    description:
+      'Create a private memorial space and easily invite friends and family to view and contribute.',
+    src: '/Image-1-compressed.jpg'
+  },
+  {
+    title: ' Capture memories with photos and videos',
+    description:
+      'Easily add photos and videos to bring memories to life. Create a central location everyone can access.',
+    src: '/Image-2-compressed.jpg'
+  },
+  {
+    title: 'Add comments to commemorate together',
+    description:
+      'Post tributes, anecdotes, memories and more. Comment replies help keep everything organized.',
+    src: '/Image-3-compressed.jpg'
+  },
+  {
+    title: 'Help everyone stay connected',
+    description:
+      'Enable notifications for new images, videos and comments to keep everyone connected.',
+    src: '/Image-4-compressed.jpg'
+  }
+];
 
 function Home() {
   return (
-    <Content py={0} maxWidth="100%">
-      <HomeRow>
-        <Box flex={1}>
-          <Text as="h1" variant="h1" mb={38}>
-            Beautiful, online memorials
-          </Text>
-          <Text color="text3" mb={47}>
-            Celebrate a life with friends and family through a private, online
-            memorial — for free.
-          </Text>
-          <Button as={Link} to="/space-create" variant="primary">
-            Create Memorial
-          </Button>
-        </Box>
-        <Box variant="imagecard" width={495} height={440} ml={140} />
-      </HomeRow>
-      <HomeRow>
-        <Box variant="imagecard" width={495} height={440} mr={140} />
-        <Box flex={1}>
-          <Text variant="h3" mb={20}>
-            Share a private memorial with friends and family
-          </Text>
-          <Text color="text3">
-            Create a private memorial space and easily invite friends and family
-            to view and contribute.
-          </Text>
-        </Box>
-      </HomeRow>
-      <HomeRow>
-        <Box flex={1}>
-          <Text variant="h3" mb={20}>
-            Capture memories with photos and videos
-          </Text>
-          <Text color="text3">
-            Easily add photos and videos to bring memories to life. Create a
-            central location everyone can access.
-          </Text>
-        </Box>
-        <Box variant="imagecard" width={495} height={440} ml={140} />
-      </HomeRow>
-      <HomeRow>
-        <Box variant="imagecard" width={495} height={440} mr={140} />
-        <Box flex={1}>
-          <Text variant="h3" mb={20}>
-            Add comments to commemorate together
-          </Text>
-          <Text color="text3">
-            Post tributes, anecdotes, memories and more. Comment replies help
-            keep everything organized.
-          </Text>
-        </Box>
-      </HomeRow>
-      <HomeRow>
-        <Box flex={1}>
-          <Text variant="h3" mb={20}>
-            Help everyone stay connected
-          </Text>
-          <Text color="text3">
-            Enable notifications for new images, videos and comments to keep
-            everyone connected.
-          </Text>
-        </Box>
-        <Box variant="imagecard" width={495} height={440} ml={140} />
-      </HomeRow>
+    <Content py={0} maxWidth="100%" px={0}>
+      {HOME_ROWS.map((row, index) => (
+        <HomeRow key={`home_${index}`} reversed={Boolean(index % 2)} {...row} />
+      ))}
       <Flex
-        py={112}
+        py={[56, 112]}
         alignItems="center"
         flexDirection="column"
         css={{ position: 'relative' }}
       >
         <Box
           height="1px"
-          width={1}
+          width={[0, 1]}
           bg="border2"
           css={{ position: 'absolute', top: '50%', zIndex: -1 }}
         />
-        <Text variant="h3" mb={85}>
+        <Text variant="h3" mb={[56, 85]}>
           Get started for free
         </Text>
         <FluidContainer
           alignItems="center"
           justifyContent="space-between"
-          flexDirection="row"
-          mb={85}
+          flexDirection={['column', 'row']}
+          mb={[56, 85]}
         >
           {GET_STARTED_CARDS.map(c => (
             <GetStartedCard
@@ -139,9 +109,16 @@ function Home() {
             />
           ))}
         </FluidContainer>
-        <Button as={Link} to="/space-create" variant="primary">
-          Create Memorial
-        </Button>
+        <FluidContainer>
+          <Button
+            as={Link}
+            to="/space-create"
+            variant="home"
+            width={[1, 'initial']}
+          >
+            Create Memorial
+          </Button>
+        </FluidContainer>
       </Flex>
     </Content>
   );

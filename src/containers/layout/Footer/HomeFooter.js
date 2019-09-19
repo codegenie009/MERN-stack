@@ -13,7 +13,12 @@ function HomeFooter() {
         borderTopStyle: 'solid'
       }}
     >
-      <FluidContainer pt={50} pb={100} flexDirection="row">
+      <FluidContainer
+        pt={50}
+        pb={100}
+        flexDirection={['column', 'row']}
+        alignItems={['center', 'flex-start']}
+      >
         {FOOTER_LINKS.map(group => (
           <Flex key={group.title} flexDirection="column" flex={1}>
             <Text fontWeight="bold" mb={10}>

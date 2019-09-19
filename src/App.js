@@ -12,6 +12,7 @@ import Home from 'pages/home';
 import SpaceCreate from 'pages/home/space-create';
 import AuthRoutes from 'pages/auth';
 import AccountRoutes from 'pages/account';
+import SpaceRoutes from 'pages/space';
 
 // @TODO manage loading state of API with linear progress
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
         <Route path="/auth" component={AuthRoutes} />
         <Route path="/account" component={AccountRoutes} />
         <Route path="/space-create" component={SpaceCreate} />
+        <Route path="/spaces/:slug" component={SpaceRoutes} />
         <Route render={() => <Redirect to="/" />} />
       </Switch>
     );
