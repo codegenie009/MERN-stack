@@ -33,7 +33,7 @@ const HOME_ROWS = [
     title: 'Beautiful, online memorials',
     description:
       'Celebrate a life with friends and family through a private, online memorial — for free.',
-    src: '/hero-compressed.jpg',
+    src: '/Hero-compressed.jpg',
     titleVariant: 'h1',
     children: (
       <Button
