@@ -13,7 +13,9 @@ const theme = {
     highlight: '#16171d',
     link: '#4b85c4',
     danger: '#d92f2f',
+    dangerDimmed: '#FCE9E9',
     muted: '#999999',
+    disabled: '#dddddd',
     border: '#cccccc',
     border2: '#f0f0f0',
     border3: '#fafafa',
@@ -72,6 +74,11 @@ const theme = {
       fontWeight: 'bold',
       fontSize: 18
     },
+    pagetitle: {
+      fontWeight: 'bold',
+      fontSize: 35,
+      lineHeight: '42px'
+    },
     title: {
       fontWeight: 'bold',
       fontSize: 20
@@ -109,6 +116,19 @@ const theme = {
       fontWeight: 'medium',
       fontSize: 11,
       lineHeight: '17px'
+    },
+    helper: {
+      fontWeight: 'regular',
+      fontSize: 15,
+      lineHeight: '18px'
+    },
+    boldlink: {
+      color: 'text',
+      fontWeight: 'bold',
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline'
+      }
     },
     link: {
       color: 'link',
@@ -167,6 +187,7 @@ const theme = {
   },
   buttons: {
     base: {
+      outline: 'none',
       borderRadius: 'button',
       boxShadow: 'card',
       transition: 'all .3s ease-in-out',
@@ -181,6 +202,12 @@ const theme = {
       '&:hover,:focus': {
         color: 'background',
         bg: 'highlight'
+      },
+      '&:disabled': {
+        bg: 'disabled',
+        borderColor: 'disabled',
+        color: 'text',
+        cursor: 'not-allowed'
       }
     },
     headerlink: {
@@ -201,6 +228,43 @@ const theme = {
       color: 'background',
       bg: 'primary'
     },
+    secondary: {
+      variant: 'buttons.base',
+      bg: 'transparent',
+      color: 'primary',
+      fontWeight: 'medium'
+    },
+    primarySquare: {
+      variant: 'buttons.primary',
+      fontSize: 18,
+      py: 14,
+      px: 30,
+      borderRadius: 'default',
+      fontWeight: 600
+    },
+    secondarySquare: {
+      variant: 'buttons.secondary',
+      borderColor: 'border',
+      fontSize: 18,
+      py: 14,
+      px: 30,
+      borderRadius: 'default',
+      fontWeight: 600
+    },
+    secondarySquareSm: {
+      variant: 'buttons.secondarySquare',
+      px: 24,
+      py: 14,
+      fontSize: 16
+    },
+    cancel: {
+      variant: 'buttons.secondarySquare',
+      borderColor: 'border',
+      color: 'text3',
+      '&:hover,:focus': {
+        bg: 'background2'
+      }
+    },
     home: {
       variant: 'buttons.primary',
       px: 32,
@@ -208,20 +272,37 @@ const theme = {
       fontSize: 16,
       fontWeight: 'medium',
       lineHeight: '19px'
-    },
-    secondary: {
-      variant: 'buttons.base',
-      bg: 'transparent',
-      color: 'primary',
-      fontWeight: 'medium'
     }
   },
   images: {},
-  form: {
+  forms: {
     input: {
       borderWidth: 1,
       borderStyle: 'solid',
-      borderColor: 'borderinput'
+      borderColor: 'borderinput',
+      borderRadius: 'default',
+      pt: 13,
+      pb: 14,
+      px: 17,
+      fontSize: 16,
+      lineHeight: '19px',
+      outline: 'none'
+    },
+    invalidInput: {
+      variant: 'forms.input',
+      borderColor: 'danger',
+      bg: 'dangerDimmed'
+    },
+    label: {
+      fontWeight: 600,
+      fontSize: 16,
+      lineHeight: '19px',
+      color: 'text'
+    },
+    sublabel: {
+      variant: 'forms.label',
+      color: 'text3',
+      fontWeight: 'regular'
     }
   },
   styles: {
