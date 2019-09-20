@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button as RebassButton } from 'rebass';
+import { Button as RebassButton, Text } from 'rebass';
 
-function Button({ loading, disabled, children, ...rest }) {
+function Button({ loading, disabled, icon, children, ...rest }) {
   return (
     <RebassButton disabled={loading || disabled} {...rest}>
-      {loading && <i className="far fa-circle-notch fa-spin" />}
+      {loading && <Text mr={5} className="far fa-circle-notch fa-spin" />}
+      {icon && <Text mr={5} className={icon} />}
       {children}
     </RebassButton>
   );
@@ -14,6 +15,7 @@ function Button({ loading, disabled, children, ...rest }) {
 Button.propTypes = {
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
+  icon: PropTypes.string,
   children: PropTypes.node
 };
 

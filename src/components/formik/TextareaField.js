@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input } from '@rebass/forms';
+import { Textarea } from '@rebass/forms';
 import Field from './Field';
 
-const InputField = ({
+const TextareaField = ({
   field,
   form,
   label,
@@ -21,7 +21,7 @@ const InputField = ({
       helpText={helpText}
       labelProps={labelProps}
       render={({ hasError }) => (
-        <Input
+        <Textarea
           variant={hasError ? 'invalidInput' : 'input'}
           {...field}
           {...otherProps}
@@ -31,7 +31,7 @@ const InputField = ({
   );
 };
 
-InputField.propTypes = {
+TextareaField.propTypes = {
   field: PropTypes.object,
   form: PropTypes.object,
   label: PropTypes.string,
@@ -41,4 +41,4 @@ InputField.propTypes = {
   submitCount: PropTypes.number
 };
 
-export default InputField;
+export default TextareaField;

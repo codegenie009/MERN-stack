@@ -8,6 +8,7 @@ const Field = ({
   name,
   render,
   label,
+  sublabel,
   labelProps,
   helpText,
   hideError,
@@ -23,7 +24,16 @@ const Field = ({
 
   return (
     <FormGroup>
-      {label && <Label {...labelProps}>{label}</Label>}
+      {label && (
+        <Label {...labelProps}>
+          {label}
+          {sublabel && (
+            <Label variant="sublabel" mb={0} ml={3}>
+              {sublabel}
+            </Label>
+          )}
+        </Label>
+      )}
       {render({ hasError, error })}
       {!hideError && (
         <InvalidFeedback>{hasError ? error : null}</InvalidFeedback>
@@ -40,6 +50,7 @@ Field.propTypes = {
   hideError: PropTypes.bool,
   labelProps: PropTypes.object,
   label: PropTypes.string,
+  sublabel: PropTypes.string,
   helpText: PropTypes.any,
   submitCount: PropTypes.number
 };
