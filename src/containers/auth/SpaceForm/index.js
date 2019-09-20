@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import { Box } from 'rebass';
 import { Button, AlertPanel } from 'components/common';
-import { InputField } from 'components/formik';
+import { InputField, TextareaField } from 'components/formik';
 import schema from './schema';
 
 class SpaceForm extends Component {
@@ -34,11 +35,36 @@ class SpaceForm extends Component {
     return (
       <Box as={Form} {...formProps}>
         <AlertPanel children={error} />
-        <Field component={InputField} name="name" label="Space name" />
-        <Field component={InputField} name="slug" label="Space url" />
-        <Button loading={isSubmitting} disabled={!isValid} type="submit">
-          {buttonText}
-        </Button>
+        <Field component={InputField} name="name" label="Memorial for" />
+        <Field
+          component={TextareaField}
+          name="description"
+          rows={3}
+          maxLength={250}
+          label="Tribute"
+          sublabel="(Optional)"
+          helpText="This will appear at the top of the memorial page. Limit 250 characters."
+        />
+        <Box mt={56}>
+          <Button
+            as={Link}
+            to="/account-spaces"
+            variant="cancel"
+            disabled={isSubmitting}
+            type="button"
+            mr={8}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="primarySquare"
+            loading={isSubmitting}
+            disabled={!isValid}
+            type="submit"
+          >
+            {buttonText}
+          </Button>
+        </Box>
       </Box>
     );
   };
@@ -50,7 +76,7 @@ class SpaceForm extends Component {
       <Formik
         initialValues={{
           name: '',
-          slug: '',
+          description: '',
           ...initialValues
         }}
         onSubmit={this.handleSubmit}
@@ -69,7 +95,7 @@ SpaceForm.propTypes = {
 };
 
 SpaceForm.defaultProps = {
-  buttonText: 'Submit'
+  buttonText: 'Save'
 };
 
 export default SpaceForm;
