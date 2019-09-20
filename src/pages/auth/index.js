@@ -4,6 +4,7 @@ import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Content } from 'containers/layout';
 
 import Login from './login';
+import Signup from './signup';
 
 function AuthRoutes({ match }) {
   const { url: prefix } = match;
@@ -12,6 +13,7 @@ function AuthRoutes({ match }) {
     <Content>
       <Switch>
         <Route exact path={`${prefix}/login`} component={Login} />
+        <Route exact path={`${prefix}/signup`} component={Signup} />
         <Route render={() => <Redirect to="/auth/login" />} />
       </Switch>
     </Content>

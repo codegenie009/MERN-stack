@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { Text } from 'rebass';
-import LoginForm from 'containers/auth/LoginForm';
+import SignupForm from 'containers/auth/SignupForm';
 import { AuthLayout } from 'containers/layout';
 import request, { refreshProfile } from 'api/request';
 import { getQueryParam } from 'utils/history';
 import MainActions from 'redux/MainRedux';
 
-function Login({ history, setLogin }) {
+function Signup({ history, setLogin }) {
   const redirectUri = getQueryParam('redirect_uri') || '';
   const handleSubmit = async (token, user) => {
     setLogin(token, user);
@@ -19,11 +19,8 @@ function Login({ history, setLogin }) {
     history.push(redirectUri || '/account/spaces');
   };
 
-  const handleLogin = async values => {
-    const resp = await request('auth', 'login', [
-      values.email,
-      values.password
-    ]);
+  const handleSignup = async values => {
+    const resp = await request('auth', 'signup', [values]);
 
     if (!resp.ok) {
       throw new Error(resp.data.message);
@@ -35,24 +32,40 @@ function Login({ history, setLogin }) {
   return (
     <AuthLayout>
       <Text variant="pagetitle" mb={35}>
-        Log In
+        Sign Up
       </Text>
-      <LoginForm onSubmit={handleLogin} />
-      <Text textAlign="center" mt={20}>
-        Can't sign in?&nbsp;
-        <Text as={Link} variant="boldlink" to="/auth/request-reset-password">
-          Reset Password
-        </Text>
-        .
-      </Text>
-      <Text textAlign="center">
-        Don't have an account?&nbsp;
+      <SignupForm onSubmit={handleSignup} />
+      <Text mt={20} textAlign="center">
+        Already have an Anecdote account?&nbsp;
         <Text
           as={Link}
           variant="boldlink"
-          to={`/auth/signup?redirect_uri=${redirectUri}`}
+          to={`/auth/login?redirect_uri=${redirectUri}`}
         >
-          Sign Up
+          Log In
+        </Text>
+      </Text>
+
+      <Text textAlign="center">
+        By creating an account, you agree to the&nbsp;
+        <Text
+          as="a"
+          variant="boldlink"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://help.anecdote.health/hc/en-us/articles/360023671412-Terms-of-Service"
+        >
+          Terms of Service
+        </Text>
+        &nbsp;and&nbsp;
+        <Text
+          as="a"
+          variant="boldlink"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://help.anecdote.health/hc/en-us/articles/360023796571-Privacy-Policy"
+        >
+          Privacy Policy
         </Text>
         .
       </Text>
@@ -60,7 +73,7 @@ function Login({ history, setLogin }) {
   );
 }
 
-Login.propTypes = {
+Signup.propTypes = {
   history: PropTypes.object,
   setLogin: PropTypes.func
 };
@@ -75,4 +88,4 @@ export default compose(
     null,
     mapDispatchToProps
   )
-)(Login);
+)(Signup);

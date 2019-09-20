@@ -6,13 +6,7 @@ import { Button, AlertPanel } from 'components/common';
 import { InputField } from 'components/formik';
 import schema from './schema';
 
-const INITIAL_VALUES = {
-  name: '',
-  email: '',
-  password: ''
-};
-
-class SignupForm extends Component {
+class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,7 +18,6 @@ class SignupForm extends Component {
     const { onSubmit } = this.props;
 
     this.setState({ error: null });
-    actions.setSubmitting(true);
     try {
       await onSubmit(values);
     } catch (e) {
@@ -41,12 +34,6 @@ class SignupForm extends Component {
     return (
       <Box as={Form} {...formProps}>
         <AlertPanel children={error} />
-        <Field
-          component={InputField}
-          name="name"
-          label="Name"
-          rightIcon={<i className="fal fa-user" />}
-        />
         <Field
           component={InputField}
           name="email"
@@ -68,7 +55,7 @@ class SignupForm extends Component {
           disabled={!isValid}
           type="submit"
         >
-          Sign Up
+          Log In
         </Button>
       </Box>
     );
@@ -80,7 +67,8 @@ class SignupForm extends Component {
     return (
       <Formik
         initialValues={{
-          ...INITIAL_VALUES,
+          email: '',
+          password: '',
           ...initialValues
         }}
         onSubmit={this.handleSubmit}
@@ -91,10 +79,10 @@ class SignupForm extends Component {
   }
 }
 
-SignupForm.propTypes = {
+LoginForm.propTypes = {
   formProps: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object
 };
 
-export default SignupForm;
+export default LoginForm;
