@@ -4,9 +4,13 @@ import { withRouter } from 'react-router-dom';
 // import HomeFooter from './HomeFooter';
 import SimpleFooter from './SimpleFooter';
 
+const NO_FOOTER_LINKS = ['/space-create'];
+
 // @TODO home footer?
 function Footer({ location }) {
-  // if (location.pathname === '/') return <HomeFooter />;
+  if (NO_FOOTER_LINKS.includes(location.pathname)) {
+    return null;
+  }
 
   return <SimpleFooter />;
 }

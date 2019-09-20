@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Box, Flex, Text } from 'rebass';
 import MainActions, { MainSelectors } from 'redux/MainRedux';
 import {
@@ -12,6 +13,8 @@ import {
 import HeaderNav from './HeaderNav';
 import HeaderNavItem from './HeaderNavItem';
 import HeaderButton from './HeaderButton';
+
+const NO_HEADER_LINKS = ['/space-create'];
 
 class Header extends Component {
   constructor() {
@@ -65,6 +68,11 @@ class Header extends Component {
 
   render() {
     const { nav } = this.state;
+    const { location } = this.props;
+
+    if (NO_HEADER_LINKS.includes(location.pathname)) {
+      return null;
+    }
 
     return (
       <FluidContainer
@@ -93,6 +101,7 @@ class Header extends Component {
 
 Header.propTypes = {
   isLoggedIn: PropTypes.bool,
+  location: PropTypes.object,
   // user: PropTypes.object,
   setLogout: PropTypes.func
 };
@@ -106,7 +115,12 @@ const mapDispatchToProps = dispatch => ({
   setLogout: () => dispatch(MainActions.setLogout())
 });
 
-export default connect(
-  mapStatesToProps,
-  mapDispatchToProps
-)(Header);
+const enhance = compose(
+  withRouter,
+  connect(
+    mapStatesToProps,
+    mapDispatchToProps
+  )
+);
+
+export default enhance(Header);
