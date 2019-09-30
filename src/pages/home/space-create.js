@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import withAuth from 'hocs/withAuth';
 import { AuthLayout } from 'containers/layout';
 import SpaceForm from 'containers/auth/SpaceForm';
-import request from 'api/request';
+import request, { refreshProfile } from 'api/request';
 import InvitationLink from 'containers/space/InvitationLink';
 import TextLink from 'containers/space/TextLink';
 
@@ -19,6 +19,7 @@ function SpaceCreate() {
     ]);
 
     if (resp.ok) {
+      await refreshProfile();
       setSpace(resp.data);
     } else {
       throw new Error(resp.data.message);
@@ -57,6 +58,5 @@ function SpaceCreate() {
 }
 
 export default withAuth(SpaceCreate, {
-  redirect_uri: '/space-create',
-  has_signup: true
+  redirect_uri: '/space-create'
 });
