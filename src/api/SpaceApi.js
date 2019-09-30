@@ -16,12 +16,16 @@ export default token => {
 
   const list = params => api.get('', params);
   const get = id => api.get(id);
+  const light = id => api.get(`${id}/light`);
+  const join = id => api.post(`${id}/join`);
   const create = space => api.post('', space);
   const update = (id, space) => api.put(id, space);
   const remove = id => api.delete(id);
 
   return {
     list,
+    light,
+    join,
     get,
     create,
     update,
