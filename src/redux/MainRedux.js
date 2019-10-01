@@ -1,6 +1,7 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Cookies from 'js-cookie';
 import get from 'lodash/get';
+import request from 'api/request';
 
 /* --------------------- Types and Action Creators ---------------- */
 const { Types, Creators } = createActions({
@@ -22,6 +23,17 @@ Creators.setLogout = () => {
   return dispatch => {
     Cookies.remove('memorial-token');
     return Promise.resolve(dispatch(Creators.setUser(null)));
+  };
+};
+
+Creators.refreshProfile = () => {
+  return async dispatch => {
+    const resp = await request('profile', 'get');
+    if (resp.ok) {
+      dispatch(Creators.setUser(resp.data));
+    }
+
+    return resp.data;
   };
 };
 
