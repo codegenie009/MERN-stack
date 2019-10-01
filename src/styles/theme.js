@@ -52,7 +52,8 @@ const theme = {
   },
   // rebass variants
   sizes: {
-    spacethumb: 196
+    spacethumb: 196,
+    postthumb: 300
   },
   text: {
     h1: {
@@ -175,6 +176,11 @@ const theme = {
     spacethumb: {
       width: 'spacethumb',
       height: 'spacethumb',
+      borderRadius: 'default'
+    },
+    postthumb: {
+      width: 'postthumb',
+      height: 'postthumb',
       borderRadius: 'default'
     },
     hasDivider: {
