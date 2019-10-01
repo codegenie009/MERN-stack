@@ -54,8 +54,9 @@ function Upload({ spaceId, addPosts }) {
         clearable
         crop="free, 16:9, 4:3, 5:4, 1:1"
         multiple
-        inputAcceptTypes="image/* video/*"
-        preferredTypes="image/* video/*"
+        imagesOnly
+        inputAcceptTypes="image/*"
+        preferredTypes="image/*"
         onChange={handleUpload}
       />
     </>
