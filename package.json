@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@rebass/forms": "^4.0.5",
+    "@uploadcare/react-widget": "^1.0.2",
     "apisauce": "^1.0.5",
     "emotion-theming": "^10.0.17",
     "formik": "^1.5.8",

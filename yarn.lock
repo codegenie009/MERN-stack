@@ -1446,6 +1446,20 @@
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
+"@uploadcare/client-suspense@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@uploadcare/client-suspense/-/client-suspense-1.0.1.tgz#3b809f2cd1d2bf61ae0863a35bbaf2b4e0f35dde"
+  integrity sha512-t1BDY0Gzf68QnTh30LtBBZNTqXR51xNOsf9+ZNcL7/I5B5EVEwN8JjlpEuYiGWbX3b5uFfxNPd12LKULDqOAkw==
+
+"@uploadcare/react-widget@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@uploadcare/react-widget/-/react-widget-1.0.2.tgz#788331660ef06faac6f1dfbbbbe1a83a18d582ff"
+  integrity sha512-WcYCEvMNlLW8qXDMq2o33N1FyL+ojM2IZNSdXYmbkxoJJSxzEfRy0wPs1uoyEWVrG/NzpeeDiRAIMXGSLBXK8A==
+  dependencies:
+    "@uploadcare/client-suspense" "^1.0.1"
+    react-fast-compare "^2.0.4"
+    uploadcare-widget "^3.7.7"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -5934,6 +5948,11 @@ jest@24.8.0:
     import-local "^2.0.0"
     jest-cli "^24.8.0"
 
+jquery@>=1.10.2:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
+
 js-cookie@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
@@ -8431,7 +8450,7 @@ react-error-overlay@^6.0.1:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.1.tgz#b8d3cf9bb991c02883225c48044cb3ee20413e0f"
   integrity sha512-V9yoTr6MeZXPPd4nV/05eCBvGH9cGzc52FN8fs0O0TVQ3HYYf1n7EgZVtHbldRq5xU9zEzoXIITjYNIfxDDdUw==
 
-react-fast-compare@^2.0.1:
+react-fast-compare@^2.0.1, react-fast-compare@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
@@ -10096,6 +10115,13 @@ upath@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.1.2.tgz#3db658600edaeeccbe6db5e684d67ee8c2acd068"
   integrity sha512-kXpym8nmDmlCBr7nKdIx8P2jNBa+pBpIUFRnKJ4dr8htyYGJFokkr2ZvERRtUN+9SY+JqXouNgUPtv6JQva/2Q==
+
+uploadcare-widget@^3.7.7:
+  version "3.7.9"
+  resolved "https://registry.yarnpkg.com/uploadcare-widget/-/uploadcare-widget-3.7.9.tgz#0967e46a5ecb70abec74be5480f8acbdefbb531f"
+  integrity sha512-lV9EXc/1sKRbrV+RQYzMIz50dFyUxL6M59xLtJhZscMCDEUwHZMVawSv1YHGxKcuWF0Tbrilkklik5TkbD8nlA==
+  dependencies:
+    jquery ">=1.10.2"
 
 upper-case@^1.1.1:
   version "1.1.3"
