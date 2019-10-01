@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import MainActions, { MainSelectors } from 'redux/MainRedux';
-import { refreshProfile } from 'api/request';
 import { MainLayout, Footer, Header } from 'containers/layout';
 import { LoadingContainer } from 'components/common';
 
@@ -22,7 +21,7 @@ class App extends Component {
   }
 
   startup = async () => {
-    const { setLoaded } = this.props;
+    const { setLoaded, refreshProfile } = this.props;
     const token = Cookies.get('memorial-token');
 
     if (token) {
@@ -86,7 +85,8 @@ App.propTypes = {
   loaded: PropTypes.bool,
   // loading: PropTypes.bool,
   isLoggedin: PropTypes.bool,
-  setLoaded: PropTypes.func
+  setLoaded: PropTypes.func,
+  refreshProfile: PropTypes.func
 };
 
 const mapStatesToProps = state => ({
@@ -96,7 +96,8 @@ const mapStatesToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLoaded: loaded => dispatch(MainActions.setLoaded(loaded))
+  setLoaded: loaded => dispatch(MainActions.setLoaded(loaded)),
+  refreshProfile: () => dispatch(MainActions.refreshProfile())
 });
 
 export default connect(

@@ -6,11 +6,11 @@ import { compose } from 'redux';
 import { Text } from 'rebass';
 import SignupForm from 'containers/auth/SignupForm';
 import { AuthLayout } from 'containers/layout';
-import request, { refreshProfile } from 'api/request';
+import request from 'api/request';
 import { getQueryParam } from 'utils/history';
 import MainActions from 'redux/MainRedux';
 
-function Signup({ history, setLogin }) {
+function Signup({ history, refreshProfile, setLogin }) {
   const redirectUri = getQueryParam('redirect_uri') || '';
   const handleSubmit = async (token, user) => {
     setLogin(token, user);
@@ -75,11 +75,13 @@ function Signup({ history, setLogin }) {
 
 Signup.propTypes = {
   history: PropTypes.object,
-  setLogin: PropTypes.func
+  setLogin: PropTypes.func,
+  refreshProfile: PropTypes.func
 };
 
 const mapDispatchToProps = dispatch => ({
-  setLogin: (token, user) => dispatch(MainActions.setLogin(token, user))
+  setLogin: (token, user) => dispatch(MainActions.setLogin(token, user)),
+  refreshProfile: () => dispatch(MainActions.refreshProfile())
 });
 
 export default compose(

@@ -9,7 +9,7 @@ import { LoadingContainer } from 'components/common';
 import { AuthLayout } from 'containers/layout';
 import MainActions, { MainSelectors } from 'redux/MainRedux';
 import { goToPage } from 'utils/history';
-import request, { refreshProfile } from 'api/request';
+import request from 'api/request';
 
 function InviteHome({
   isLoggedIn,
@@ -17,7 +17,8 @@ function InviteHome({
   permissions,
   location,
   match,
-  setLogout
+  setLogout,
+  refreshProfile
 }) {
   const [space, setSpace] = useState(null);
   const slug = get(match, 'params.slug', '');
@@ -103,7 +104,8 @@ InviteHome.propTypes = {
   permissions: PropTypes.array,
   match: PropTypes.object,
   isLoggedIn: PropTypes.bool,
-  setLogout: PropTypes.func
+  setLogout: PropTypes.func,
+  refreshProfile: PropTypes.func
 };
 
 const mapStatesToProps = state => ({
@@ -113,7 +115,8 @@ const mapStatesToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLogout: () => dispatch(MainActions.setLogout())
+  setLogout: () => dispatch(MainActions.setLogout()),
+  refreshProfile: () => dispatch(MainActions.refreshProfile())
 });
 
 const enhance = compose(
