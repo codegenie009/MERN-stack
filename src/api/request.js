@@ -2,18 +2,20 @@ import Cookies from 'js-cookie';
 import createProfileApi from './ProfileApi';
 import createAuthApi from './AuthApi';
 import createSpaceApi from './SpaceApi';
+import createPostApi from './PostApi';
 
-import { getStore } from '../redux/store';
-import MainActions from '../redux/MainRedux';
+// import { getStore } from '../redux/store';
+// import MainActions from '../redux/MainRedux';
 
 const API_MAP = {
   auth: createAuthApi,
   space: createSpaceApi,
+  post: createPostApi,
   profile: createProfileApi
 };
 
 export default async function request(apiName, func, params = [], apiOptions) {
-  const store = getStore();
+  // const store = getStore();
   const createApi = API_MAP[apiName];
   const token = Cookies.get('memorial-token');
 
@@ -22,18 +24,8 @@ export default async function request(apiName, func, params = [], apiOptions) {
   }
 
   const api = createApi(token, apiOptions);
-  store.dispatch(MainActions.setLoading(true));
+  // store.dispatch(MainActions.setLoading(true));
   const resp = await api[func](...params);
-  store.dispatch(MainActions.setLoading(false));
+  // store.dispatch(MainActions.setLoading(false));
   return resp;
-}
-
-export async function refreshProfile() {
-  const store = getStore();
-  const resp = await request('profile', 'get');
-  if (resp.ok) {
-    store.dispatch(MainActions.setUser(resp.data));
-  }
-
-  return resp.data;
 }
