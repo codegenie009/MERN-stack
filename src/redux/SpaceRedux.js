@@ -6,6 +6,7 @@ const { Types, Creators } = createActions({
   setSpace: ['space'],
   setPosts: ['posts'],
   addPosts: ['posts'],
+  setCurrentPost: ['currentPost'],
   setPostsLoading: ['postsLoading']
 });
 
@@ -41,6 +42,7 @@ export default Creators;
 /* --------------------- Selectors ---------------- */
 export const SpaceSelectors = {
   selectCurrentSpace: state => state.currentSpace.space,
+  selectCurrentPost: state => state.currentSpace.currentPost,
   selectPosts: state => state.currentSpace.posts,
   selectPostsLoading: state => state.currentSpace.postsLoading
 };
@@ -48,6 +50,7 @@ export const SpaceSelectors = {
 /* --------------------- Initial State ----------------- */
 export const INITIAL_STATE = {
   space: null,
+  currentPost: null,
   posts: [],
   postsLoading: false
 };
@@ -74,9 +77,15 @@ export const setPostsLoading = (state, { postsLoading }) => ({
   postsLoading
 });
 
+export const setCurrentPost = (state, { currentPost }) => ({
+  ...state,
+  currentPost
+});
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_SPACE]: setSpace,
   [Types.SET_POSTS]: setPosts,
+  [Types.SET_CURRENT_POST]: setCurrentPost,
   [Types.ADD_POSTS]: addPosts,
   [Types.SET_POSTS_LOADING]: setPostsLoading
 });
