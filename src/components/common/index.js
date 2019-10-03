@@ -5,4 +5,7 @@ export { default as GetStartedCard } from './GetStartedCard';
 export { default as MagicLink } from './MagicLink';
 export { default as AlertPanel } from './AlertPanel';
 export { default as HomeRow } from './HomeRow';
+export { default as UserMention } from './UserMention';
+export { default as Divider } from './Divider';
 export * from './Dropdown';
+export * from './Modal';
