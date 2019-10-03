@@ -3,6 +3,7 @@ import createProfileApi from './ProfileApi';
 import createAuthApi from './AuthApi';
 import createSpaceApi from './SpaceApi';
 import createPostApi from './PostApi';
+import createCommentApi from './CommentApi';
 
 // import { getStore } from '../redux/store';
 // import MainActions from '../redux/MainRedux';
@@ -11,7 +12,8 @@ const API_MAP = {
   auth: createAuthApi,
   space: createSpaceApi,
   post: createPostApi,
-  profile: createProfileApi
+  profile: createProfileApi,
+  comment: createCommentApi
 };
 
 export default async function request(apiName, func, params = [], apiOptions) {

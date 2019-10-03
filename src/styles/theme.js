@@ -151,6 +151,15 @@ const theme = {
       fontSize: 16,
       lineHeight: '25px',
       fontWeight: 'regular'
+    },
+    comment: {
+      fontSize: 13,
+      lineHeight: '17px'
+    },
+    username: {
+      fontSize: 13,
+      lineHeight: '16px',
+      fontWeight: 600
     }
   },
   variants: {
@@ -189,6 +198,18 @@ const theme = {
         borderTopStyle: 'solid',
         borderTopColor: 'divider'
       }
+    },
+    placeholder: {
+      bg: 'background2',
+      color: 'text3',
+      borderRadius: 'default',
+      borderColor: 'borderinput',
+      borderStyle: 'solid',
+      borderWidth: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
     }
   },
   buttons: {
@@ -309,6 +330,13 @@ const theme = {
       variant: 'forms.label',
       color: 'text3',
       fontWeight: 'regular'
+    },
+    naked: {
+      border: 'none',
+      outline: 'none',
+      px: 15,
+      py: 10,
+      fontSize: 13
     }
   },
   styles: {
