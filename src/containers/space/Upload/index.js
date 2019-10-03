@@ -5,8 +5,9 @@ import { Widget } from '@uploadcare/react-widget/en';
 import request from 'api/request';
 import { Button } from 'components/common';
 import SpaceActions from 'redux/SpaceRedux';
+import { MainSelectors } from 'redux/MainRedux';
 
-function Upload({ spaceId, addPosts }) {
+function Upload({ user, spaceId, addPosts }) {
   const widgetApi = useRef();
   const [value, setValue] = useState(null);
 
@@ -15,10 +16,13 @@ function Upload({ spaceId, addPosts }) {
     setValue(fileInfo);
     const resp = await request(
       'post',
-      'batchCreate',
+      'create',
       [
         {
-          group_id: fileInfo.uuid
+          filename: fileInfo.name,
+          mimeType: fileInfo.mimeType,
+          uploadcareId: fileInfo.uuid,
+          fileUrl: fileInfo.cdnUrl
         }
       ],
       { spaceId }
@@ -26,7 +30,12 @@ function Upload({ spaceId, addPosts }) {
 
     // reset upload modal
     if (resp.ok) {
-      addPosts(resp.data);
+      addPosts([
+        {
+          ...resp.data,
+          user
+        }
+      ]);
       setValue(null);
     } else {
       // @TODO handle feedback
@@ -52,8 +61,7 @@ function Upload({ spaceId, addPosts }) {
         value={value}
         previewStep
         clearable
-        crop="free, 16:9, 4:3, 5:4, 1:1"
-        multiple
+        crop="5:4"
         imagesOnly
         inputAcceptTypes="image/*"
         preferredTypes="image/*"
@@ -64,15 +72,20 @@ function Upload({ spaceId, addPosts }) {
 }
 
 Upload.propTypes = {
+  user: PropTypes.object.isRequired,
   spaceId: PropTypes.string.isRequired,
   addPosts: PropTypes.func.isRequired
 };
+
+const mapStatesToProps = state => ({
+  user: MainSelectors.selectUser(state)
+});
 
 const mapDispatchToProps = dispatch => ({
   addPosts: posts => dispatch(SpaceActions.addPosts(posts))
 });
 
 export default connect(
-  null,
+  mapStatesToProps,
   mapDispatchToProps
 )(Upload);

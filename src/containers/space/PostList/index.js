@@ -6,7 +6,7 @@ import { LoadingContainer } from 'components/common';
 import SpaceActions, { SpaceSelectors } from 'redux/SpaceRedux';
 import PostItem from './PostItem';
 
-function PostList({ space, loadPosts, posts, postsLoading }) {
+function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
   useEffect(() => {
     loadPosts(space._id);
   }, []);
@@ -15,7 +15,13 @@ function PostList({ space, loadPosts, posts, postsLoading }) {
     <LoadingContainer loading={postsLoading}>
       <Flex flexWrap="wrap" alignItems="center" mx={-20}>
         {posts.map(post => (
-          <PostItem key={post._id} post={post} mx={20} my={20} />
+          <PostItem
+            key={post._id}
+            post={post}
+            mx={20}
+            my={20}
+            onClick={() => setCurrentPost(post)}
+          />
         ))}
       </Flex>
     </LoadingContainer>
@@ -24,6 +30,7 @@ function PostList({ space, loadPosts, posts, postsLoading }) {
 
 PostList.propTypes = {
   loadPosts: PropTypes.func.isRequired,
+  setCurrentPost: PropTypes.func.isRequired,
   space: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
   postsLoading: PropTypes.bool.isRequired
@@ -36,7 +43,8 @@ const mapStatesToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadPosts: spaceId => dispatch(SpaceActions.loadPosts(spaceId))
+  loadPosts: spaceId => dispatch(SpaceActions.loadPosts(spaceId)),
+  setCurrentPost: post => dispatch(SpaceActions.setCurrentPost(post))
 });
 
 export default connect(
