@@ -48,7 +48,8 @@
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-children-prop": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "react-hooks/exhaustive-deps": "off"
   },
   "globals": {
     "window": true,
