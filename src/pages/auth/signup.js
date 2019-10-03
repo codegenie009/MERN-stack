@@ -53,7 +53,7 @@ function Signup({ history, refreshProfile, setLogin }) {
           variant="boldlink"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://help.anecdote.health/hc/en-us/articles/360023671412-Terms-of-Service"
+          href="https://help.rembrance.com/hc/en-us/articles/360034370131-Terms-of-Service"
         >
           Terms of Service
         </Text>
@@ -63,7 +63,7 @@ function Signup({ history, refreshProfile, setLogin }) {
           variant="boldlink"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://help.anecdote.health/hc/en-us/articles/360023796571-Privacy-Policy"
+          href="https://help.rembrance.com/hc/en-us/articles/360034370231-Privacy-Policy"
         >
           Privacy Policy
         </Text>

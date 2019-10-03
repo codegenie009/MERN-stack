@@ -33,8 +33,20 @@ export default [
 ];
 
 export const SIMPLE_FOOTER = [
-  { children: 'Privacy', to: '/' },
-  { children: 'Contact', to: '/' },
-  { children: 'Terms', to: '/' },
-  { children: 'Help', to: '/' }
+  {
+    children: 'About',
+    href:
+      'https://help.rembrance.com/hc/en-us/articles/360034369051-What-is-Rembrance-'
+  },
+  {
+    children: 'Privacy',
+    href:
+      'https://help.rembrance.com/hc/en-us/articles/360034370231-Privacy-Policy'
+  },
+  {
+    children: 'Terms',
+    href:
+      'https://help.rembrance.com/hc/en-us/articles/360034370131-Terms-of-Service'
+  },
+  { children: 'Help', href: 'https://help.rembrance.com/hc/en-us' }
 ];

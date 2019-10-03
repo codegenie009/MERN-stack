@@ -8,7 +8,8 @@ import MainActions, { MainSelectors } from 'redux/MainRedux';
 import {
   FluidContainer,
   DropdownItem,
-  DropdownButton
+  DropdownButton,
+  MagicLink
 } from 'components/common';
 import HeaderNav from './HeaderNav';
 import HeaderNavItem from './HeaderNavItem';
@@ -52,7 +53,12 @@ class Header extends Component {
         onClose={() => this.setState({ nav: false })}
       >
         <HeaderNavItem>Premium</HeaderNavItem>
-        <HeaderNavItem>Help</HeaderNavItem>
+        <HeaderNavItem
+          as={MagicLink}
+          href="https://help.rembrance.com/hc/en-us"
+        >
+          Help
+        </HeaderNavItem>
         {!isLoggedIn && (
           <HeaderNavItem as={Link} to="/auth/login">
             Sign In
