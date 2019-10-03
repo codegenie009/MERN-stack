@@ -18,7 +18,8 @@ function SpaceCreate({ refreshProfile }) {
     const resp = await request('space', 'create', [
       {
         description: values.description,
-        name: values.name
+        name: values.name,
+        image: values.image
       }
     ]);
 

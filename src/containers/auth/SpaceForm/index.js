@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import { Box } from 'rebass';
 import { Button, AlertPanel } from 'components/common';
-import { InputField, TextareaField } from 'components/formik';
+import { InputField, TextareaField, FileUploadField } from 'components/formik';
 import schema from './schema';
 
 class SpaceForm extends Component {
@@ -45,6 +45,7 @@ class SpaceForm extends Component {
           sublabel="(Optional)"
           helpText="This will appear at the top of the memorial page. Limit 250 characters."
         />
+        <Field component={FileUploadField} name="image" label="Photo" />
         <Box mt={56}>
           <Button
             as={Link}
@@ -77,6 +78,7 @@ class SpaceForm extends Component {
         initialValues={{
           name: '',
           description: '',
+          image: '',
           ...initialValues
         }}
         onSubmit={this.handleSubmit}
