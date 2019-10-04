@@ -11,16 +11,18 @@ class SpaceForm extends Component {
   constructor() {
     super();
     this.state = {
-      error: null
+      error: null,
+      photoFile: null
     };
   }
 
   handleSubmit = async (values, actions) => {
     const { onSubmit } = this.props;
+    const { photoFile } = this.state;
 
     this.setState({ error: null });
     try {
-      await onSubmit(values);
+      await onSubmit(values, photoFile);
     } catch (e) {
       console.error(e);
       this.setState({ error: e.message });
@@ -28,7 +30,7 @@ class SpaceForm extends Component {
     actions.setSubmitting(false);
   };
 
-  renderForm = ({ isValid, isSubmitting }) => {
+  renderForm = ({ isSubmitting }) => {
     const { buttonText, formProps } = this.props;
     const { error } = this.state;
 
@@ -45,7 +47,12 @@ class SpaceForm extends Component {
           sublabel="(Optional)"
           helpText="This will appear at the top of the memorial page. Limit 250 characters."
         />
-        <Field component={FileUploadField} name="image" label="Photo" />
+        <Field
+          component={FileUploadField}
+          name="image"
+          label="Photo"
+          onChangeFile={photoFile => this.setState({ photoFile })}
+        />
         <Box mt={56}>
           <Button
             as={Link}
@@ -57,12 +64,7 @@ class SpaceForm extends Component {
           >
             Cancel
           </Button>
-          <Button
-            variant="primarySquare"
-            loading={isSubmitting}
-            disabled={!isValid}
-            type="submit"
-          >
+          <Button variant="primarySquare" loading={isSubmitting} type="submit">
             {buttonText}
           </Button>
         </Box>

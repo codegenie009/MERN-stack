@@ -8,6 +8,7 @@ import Upload from 'containers/space/Upload';
 import PostList from 'containers/space/PostList';
 import PostViewModal from 'containers/space/PostViewModal';
 import InvitationLink from 'containers/space/InvitationLink';
+import TextLink from 'containers/space/TextLink';
 import { SpaceSelectors } from 'redux/SpaceRedux';
 
 function SpaceHome({ space }) {
@@ -34,9 +35,15 @@ function SpaceHome({ space }) {
         <PostViewModal />
       </FluidContainer>
       <Modal isOpen={invite} onRequestClose={() => setInvite(false)}>
-        <ModalHeader onClose={() => setInvite(false)} />
-        <Box px={50} py={60}>
+        <ModalHeader onClose={() => setInvite(false)} px={50} pt={40}>
+          Invite Members
+        </ModalHeader>
+        <Box px={50} py={40}>
           <InvitationLink slug={space.slug} />
+          <TextLink slug={space.slug} />
+          <Button variant="primarySquare" onClick={() => setInvite(false)}>
+            Done
+          </Button>
         </Box>
       </Modal>
     </Box>

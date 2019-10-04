@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Box } from 'rebass';
+import { Box, Button } from 'rebass';
 import { Input } from '@rebass/forms';
 import CommentActions, { CommentSelectors } from 'redux/CommentRedux';
 import { MainSelectors } from 'redux/MainRedux';
@@ -59,17 +59,35 @@ function CommentForm({
   };
 
   return (
-    <Box {...props}>
+    <Box
+      sx={{
+        position: 'relative'
+      }}
+      {...props}
+    >
       <Input
         ref={inputRef}
         disabled={saving}
         value={currentComment.content || ''}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        placeholder=" Enter to submit comment"
+        placeholder="Add a comment"
         variant="naked"
+        pr={50}
         autoFocus
       />
+      <Button
+        variant="inputxs"
+        disabled={!currentComment.content}
+        onClick={submitComment}
+        sx={{
+          position: 'absolute',
+          top: 11,
+          right: 10
+        }}
+      >
+        Post
+      </Button>
     </Box>
   );
 }
