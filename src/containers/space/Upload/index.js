@@ -61,8 +61,10 @@ function Upload({ user, spaceId, addPosts }) {
         value={value}
         previewStep
         clearable
-        crop="5:4"
+        crop="1:1"
         imagesOnly
+        cdnBase="https://cdn.rembrance.com"
+        tabs="file camera url facebook gdrive gphotos dropbox instagram"
         inputAcceptTypes="image/*"
         preferredTypes="image/*"
         onChange={handleUpload}

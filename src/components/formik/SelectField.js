@@ -1,27 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Uploader } from 'components/form';
+import { Select } from '@rebass/forms';
 import Field from './Field';
 
-const FileUploadField = ({
+const SelectField = ({
   field,
   form,
   label,
   sublabel,
-  rightIcon,
   helpText,
   labelProps,
-  onChangeFile,
+  options,
   ...otherProps
 }) => {
-  const handleChange = v => {
-    form.setFieldValue(field.name, v.cdnUrl);
-
-    if (onChangeFile) {
-      onChangeFile(v);
-    }
-  };
-
   return (
     <Field
       form={form}
@@ -30,22 +21,32 @@ const FileUploadField = ({
       sublabel={sublabel}
       helpText={helpText}
       labelProps={labelProps}
-      render={() => (
-        <Uploader onChange={handleChange} value={field.value} {...otherProps} />
+      render={({ hasError }) => (
+        <Select
+          variant={hasError ? 'invalidSelect' : 'input'}
+          {...field}
+          {...otherProps}
+        >
+          {options.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
       )}
     />
   );
 };
 
-FileUploadField.propTypes = {
+SelectField.propTypes = {
   field: PropTypes.object,
   form: PropTypes.object,
-  rightIcon: PropTypes.node,
   label: PropTypes.string,
   sublabel: PropTypes.string,
   helpText: PropTypes.string,
+  options: PropTypes.array,
   labelProps: PropTypes.object,
-  onChangeFile: PropTypes.func
+  submitCount: PropTypes.number
 };
 
-export default FileUploadField;
+export default SelectField;

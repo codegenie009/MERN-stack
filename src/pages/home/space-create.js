@@ -14,7 +14,7 @@ import MainActions from 'redux/MainRedux';
 
 function SpaceCreate({ refreshProfile }) {
   const [space, setSpace] = useState(null);
-  const handleSubmit = async values => {
+  const handleSubmit = async (values, fileInfo) => {
     const resp = await request('space', 'create', [
       {
         description: values.description,
@@ -26,6 +26,21 @@ function SpaceCreate({ refreshProfile }) {
     if (resp.ok) {
       await refreshProfile();
       setSpace(resp.data);
+
+      // silently upload first photo
+      await request(
+        'post',
+        'create',
+        [
+          {
+            filename: fileInfo.name,
+            mimeType: fileInfo.mimeType,
+            uploadcareId: fileInfo.uuid,
+            fileUrl: fileInfo.cdnUrl
+          }
+        ],
+        { spaceId: resp.data._id }
+      );
     } else {
       throw new Error(resp.data.message);
     }

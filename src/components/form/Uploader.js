@@ -6,8 +6,8 @@ import { Widget } from '@uploadcare/react-widget/en';
 function Uploader({ value, onChange, crop }) {
   const widgetApi = useRef();
 
-  const handleUpload = async fileInfo => {
-    onChange(fileInfo.cdnUrl);
+  const handleUpload = fileInfo => {
+    onChange(fileInfo);
   };
 
   return (
@@ -32,8 +32,10 @@ function Uploader({ value, onChange, crop }) {
       <Widget
         id="file"
         ref={widgetApi}
+        cdnBase="https://cdn.rembrance.com"
         publicKey={process.env.REACT_APP_UPLOADCARE_PUBLIC_KEY}
         previewStep
+        tabs="file camera url facebook gdrive gphotos dropbox instagram"
         clearable
         crop={crop}
         imagesOnly
@@ -52,7 +54,7 @@ Uploader.propTypes = {
 };
 
 Uploader.defaultProps = {
-  crop: '300x300'
+  crop: '1:1'
 };
 
 export default Uploader;

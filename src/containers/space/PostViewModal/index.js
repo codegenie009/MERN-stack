@@ -20,12 +20,21 @@ function PostViewModal({ space, post, onClose }) {
           alignItems="center"
           justifyContent="center"
           height="70vh"
-          minWidth="50vw"
+          minWidth="30vw"
           bg="background2"
         >
           <Image src={post.fileUrl} maxHeight="100%" />
         </Flex>
-        <Flex width={300} height="70vh" flexDirection="column">
+        <Flex
+          width={300}
+          height="70vh"
+          flexDirection="column"
+          sx={{
+            borderLeftColor: 'divider',
+            borderLeftStyle: 'solid',
+            borderLeftWidth: 2
+          }}
+        >
           <Box px={20} py={10}>
             <Text variant="caption">
               Shared by <UserMention variant="caption" user={post.user} />

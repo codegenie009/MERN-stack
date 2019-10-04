@@ -182,6 +182,17 @@ const theme = {
       borderStyle: 'solid',
       borderColor: 'border2'
     },
+    circle: {
+      width: 40,
+      height: 40,
+      borderRadius: 'circle',
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderColor: 'primary',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
     spacethumb: {
       width: 'spacethumb',
       height: 'spacethumb',
@@ -299,6 +310,13 @@ const theme = {
       fontSize: 16,
       fontWeight: 'medium',
       lineHeight: '19px'
+    },
+    inputxs: {
+      variant: 'buttons.primarySquare',
+      fontSize: 10,
+      lineHeight: '11px',
+      px: 7,
+      py: 5
     }
   },
   images: {},
@@ -335,7 +353,7 @@ const theme = {
       border: 'none',
       outline: 'none',
       px: 15,
-      py: 10,
+      py: 13,
       fontSize: 13
     }
   },
