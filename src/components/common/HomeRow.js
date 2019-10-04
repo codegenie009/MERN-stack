@@ -28,14 +28,14 @@ const HomeRow = ({
       <Text as={titleVariant} variant={titleVariant} mb={38}>
         {title}
       </Text>
-      <Text color="text3" mb={47}>
+      <Text color="text3" variant="body3" mb={47}>
         {description}
       </Text>
       {children}
     </Box>
     <Image
       variant="imagecard"
-      width={[1, 495]}
+      width={['initial', 495]}
       maxHeight={440}
       ml={reversed ? 0 : [0, 140]}
       mr={reversed ? [0, 140] : 0}

@@ -100,12 +100,12 @@ function Home() {
           flexDirection={['column', 'row']}
           mb={[56, 85]}
         >
-          {GET_STARTED_CARDS.map(c => (
+          {GET_STARTED_CARDS.map((c, index) => (
             <GetStartedCard
               key={c.title}
               title={c.title}
               children={c.description}
-              icon={c.icon}
+              index={index + 1}
             />
           ))}
         </FluidContainer>

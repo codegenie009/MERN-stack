@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Text } from 'rebass';
+import { Flex, Text, Box } from 'rebass';
 
-function GetStartedCard({ title, icon, children }) {
+function GetStartedCard({ title, icon, children, index }) {
   return (
     <Flex
       variant="card"
@@ -16,6 +16,9 @@ function GetStartedCard({ title, icon, children }) {
       my={[20, 0]}
       height={['initial', 300]}
     >
+      <Box variant="circle">
+        <Text variant="title">{index}</Text>
+      </Box>
       <Text as="i" fontSize={40} className={`far fa-${icon}`} mb={25} />
       <Text variant="h4" mb={15}>
         {title}
@@ -28,6 +31,7 @@ function GetStartedCard({ title, icon, children }) {
 }
 
 GetStartedCard.propTypes = {
+  index: PropTypes.number,
   title: PropTypes.string,
   children: PropTypes.string,
   icon: PropTypes.string
