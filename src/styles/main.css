@@ -29,3 +29,53 @@ body {
 .uploadcare--widget {
   display: none;
 }
+
+.uploadcare--powered-by,
+.uploadcare--powered-by__link {
+  display: none;
+}
+
+.uploadcare--button {
+  color: #383a44;
+  border-color: #383a44;
+}
+
+.uploadcare--button:focus,
+.uploadcare--button:hover,
+.uploadcare--button:active {
+  color: #16171d;
+  border-color: #16171d;
+  background-color: #ebebeb;
+}
+
+.uploadcare--button_icon {
+  border-color: #fff;
+}
+
+.uploadcare--button_icon:focus,
+.uploadcare--button_icon:hover,
+.uploadcare--button_icon:active {
+  border-color: #fff;
+}
+
+.uploadcare--button_primary {
+  background-color: #383a44;
+  border-color: #383a44;
+  color: #fff;
+}
+
+.uploadcare--button_primary:focus,
+.uploadcare--button_primary:hover,
+.uploadcare--button_primary:active {
+  border-color: #16171d;
+  background-color: #16171d;
+  color: #fff;
+}
+
+.uploadcare--crop-sizes__item_current:before {
+  background-color: #383a44;
+}
+
+.uploadcare--progress_type_canvas {
+  color: #383a44;
+}
