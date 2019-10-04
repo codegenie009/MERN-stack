@@ -2,15 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Flex } from 'rebass';
 import { maxMedias } from 'styles/breakpoints';
-import listenClick from 'helpers/listenClick';
 
 function HeaderNav({ mobileVisible, onClose, ...rest }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    const handleClick = e => {
+    const handleClick = () => {
       if (mobileVisible) {
-        listenClick(e, ref.current, onClose);
+        onClose();
       }
     };
 
@@ -35,6 +34,7 @@ function HeaderNav({ mobileVisible, onClose, ...rest }) {
           mx: -28,
           px: 28,
           py: 20,
+          height: '100vh',
           flexDirection: 'column',
           alignItems: 'flex-start',
           borderTopWidth: 1,

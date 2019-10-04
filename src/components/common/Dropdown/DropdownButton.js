@@ -32,11 +32,17 @@ const DropdownButton = ({
     };
   });
 
+  const handleTrigger = evt => {
+    evt.stopPropagation();
+    evt.nativeEvent.stopImmediatePropagation();
+    setShow(!show);
+  };
+
   return (
     <Dropdown ref={ref} className="m-dropdown">
       <DropdownTrigger
         ref={buttonRef}
-        onClick={() => setShow(!show)}
+        onClick={handleTrigger}
         label={label}
         {...props}
       />

@@ -26,8 +26,22 @@ class Header extends Component {
     };
   }
 
-  renderAccountMenu() {
+  componentDidUpdate(prevProps) {
+    const { location } = this.props;
+    if (location.pathname !== prevProps.location.pathname) {
+      this.setState({ nav: false }); // eslint-disable-line
+    }
+  }
+
+  onCloseNav = this.setState({ nav: false });
+
+  onLogout = () => {
     const { setLogout } = this.props;
+    setLogout();
+    this.onCloseNav();
+  };
+
+  renderAccountMenu() {
     return (
       <DropdownButton
         variant="headerlink"
@@ -38,7 +52,7 @@ class Header extends Component {
         <DropdownItem as={Link} to="/account/spaces">
           My Memorials
         </DropdownItem>
-        <DropdownItem onClick={setLogout}>Log Out</DropdownItem>
+        <DropdownItem onClick={this.onLogout}>Log Out</DropdownItem>
       </DropdownButton>
     );
   }
@@ -52,12 +66,11 @@ class Header extends Component {
         mobileVisible={nav}
         onClose={() => this.setState({ nav: false })}
       >
-        <HeaderNavItem>Premium</HeaderNavItem>
         <HeaderNavItem
           as={MagicLink}
-          href="https://help.rembrance.com/hc/en-us"
+          href="https://help.rembrance.com/hc/en-us/articles/360034403771-What-are-the-pricing-plans-and-features-for-Rembrance-"
         >
-          Help
+          Pricing
         </HeaderNavItem>
         {!isLoggedIn && (
           <HeaderNavItem as={Link} to="/auth/login">
@@ -86,7 +99,9 @@ class Header extends Component {
         alignItems="center"
         justifyContent="space-between"
         height={[80, 98]}
-        sx={{ position: 'relative' }}
+        width={1}
+        bg="background"
+        sx={{ position: nav ? 'fixed' : 'relative', top: 0 }}
       >
         <Box as={Link} to="/">
           <Box as="img" display="block" src="/logo-full.svg" alt="logo" />
@@ -94,6 +109,7 @@ class Header extends Component {
         <Flex sx={{ display: ['flex', 'none'] }}>
           <Text
             variant="headerlink"
+            fontSize="20px"
             onClick={() => this.setState({ nav: !nav })}
           >
             <i className="far fa-bars" />
