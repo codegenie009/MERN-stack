@@ -9,8 +9,8 @@ import { SpaceSummaryCard } from 'components/space';
 
 function Spaces({ spaces }) {
   return (
-    <Content py={50}>
-      <Text variant="title" mb={-40}>
+    <Content py={[0, 50]}>
+      <Text variant="title" mb={-40} display={['none', 'block']}>
         My Memorials
       </Text>
       {!spaces.length && (
@@ -23,7 +23,7 @@ function Spaces({ spaces }) {
         </Text>
       )}
       {spaces.map(p => (
-        <SpaceSummaryCard key={p._id} space={p} py={100}>
+        <SpaceSummaryCard key={p._id} space={p} py={[50, 100]}>
           <Button variant="primary" as={Link} to={`/spaces/${p.slug}`}>
             Visit Memorial
           </Button>

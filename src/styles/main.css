@@ -26,6 +26,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .ReactModal__Content {
+    border-radius: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    max-height: 100% !important;
+    overflow: auto !important;
+  }
+}
+
 .uploadcare--widget {
   display: none;
 }

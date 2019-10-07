@@ -48,7 +48,6 @@ function Upload({ user, spaceId, addPosts }) {
       <Button
         variant="primary"
         icon="fas fa-camera"
-        mr={10}
         loading={!!value}
         onClick={() => widgetApi.current.openDialog()}
       >

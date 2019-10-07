@@ -39,7 +39,7 @@ function CommentList({
           overflowY="auto"
           maxHeight="100%"
           px={20}
-          py={10}
+          py={[comments.length > 0 ? 10 : 0, 10]}
           ref={listRef}
         >
           {comments.map(comment => (

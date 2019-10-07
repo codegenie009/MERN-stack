@@ -20,17 +20,12 @@ function InvitationLink({ slug }) {
   return (
     <FormGroup>
       <Label>Share this invite link with family and friends.</Label>
-      <Flex alignItems="flex-start">
-        <Flex flexDirection="column" alignItems="stretch" mr={10}>
-          <Input readOnly value={url} width="initial" flex={1} />
-          <HelpText>
-            Anyone with this link can view and contribute to the memorial.
-          </HelpText>
-        </Flex>
+      <Flex alignItems="flex-start" flexDirection={['column', 'row']}>
+        <Input readOnly value={url} width={[1, 500]} mr={[0, 10]} mb={10} />
         <Button
           as={Clipboard}
           data-clipboard-text={url}
-          width={160}
+          width={[1, 160]}
           px={15}
           icon="far fa-link"
           variant="secondarySquareSm"
@@ -39,6 +34,9 @@ function InvitationLink({ slug }) {
           {copied ? 'Link Copied!' : 'Copy Link'}
         </Button>
       </Flex>
+      <HelpText>
+        Anyone with this link can view and contribute to the memorial.
+      </HelpText>
     </FormGroup>
   );
 }

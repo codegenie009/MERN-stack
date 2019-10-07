@@ -55,17 +55,22 @@ class SpaceForm extends Component {
         />
         <Box mt={56}>
           <Button
+            variant="primarySquare"
+            loading={isSubmitting}
+            type="submit"
+            mr={[0, 8]}
+            mb={[10, 0]}
+          >
+            {buttonText}
+          </Button>
+          <Button
             as={Link}
             to="/account-spaces"
             variant="cancel"
             disabled={isSubmitting}
             type="button"
-            mr={8}
           >
             Cancel
-          </Button>
-          <Button variant="primarySquare" loading={isSubmitting} type="submit">
-            {buttonText}
           </Button>
         </Box>
       </Box>

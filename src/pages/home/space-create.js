@@ -48,12 +48,12 @@ function SpaceCreate({ refreshProfile }) {
 
   if (space) {
     return (
-      <AuthLayout py={100}>
+      <AuthLayout py={[50, 100]}>
         <Text variant="pagetitle" mb={56}>
           Invite Members
         </Text>
         <InvitationLink slug={space.slug} />
-        <TextLink />
+        <TextLink space={space} />
         <Box mt={20}>
           <Button
             as={Link}
@@ -68,7 +68,7 @@ function SpaceCreate({ refreshProfile }) {
   }
 
   return (
-    <AuthLayout py={100}>
+    <AuthLayout py={[50, 100]}>
       <Text variant="pagetitle" mb={56}>
         Create Memorial
       </Text>

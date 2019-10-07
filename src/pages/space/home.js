@@ -17,13 +17,15 @@ function SpaceHome({ space }) {
   return (
     <Box>
       <Box bg="background2">
-        <FluidContainer py={60}>
+        <FluidContainer py={[0, 60]}>
           <SpaceSummaryCard space={space} py={50}>
             <Upload spaceId={space._id} />
             <Button
               variant="secondary"
               icon="far fa-envelope"
               onClick={() => setInvite(true)}
+              mt={[10, 0]}
+              ml={[0, 10]}
             >
               Invite
             </Button>
@@ -35,13 +37,17 @@ function SpaceHome({ space }) {
         <PostViewModal />
       </FluidContainer>
       <Modal isOpen={invite} onRequestClose={() => setInvite(false)}>
-        <ModalHeader onClose={() => setInvite(false)} px={50} pt={40}>
+        <ModalHeader onClose={() => setInvite(false)}>
           Invite Members
         </ModalHeader>
         <Box px={50} py={40}>
           <InvitationLink slug={space.slug} />
-          <TextLink slug={space.slug} />
-          <Button variant="primarySquare" onClick={() => setInvite(false)}>
+          <TextLink space={space} />
+          <Button
+            variant="primarySquare"
+            onClick={() => setInvite(false)}
+            mt={15}
+          >
             Done
           </Button>
         </Box>

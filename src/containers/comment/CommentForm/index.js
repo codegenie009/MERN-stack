@@ -61,7 +61,10 @@ function CommentForm({
   return (
     <Box
       sx={{
-        position: 'relative'
+        position: 'relative',
+        bg: ['background2', 'background'],
+        py: [15, 0],
+        px: [25, 0]
       }}
       {...props}
     >
@@ -80,6 +83,7 @@ function CommentForm({
         variant="inputxs"
         disabled={!currentComment.content}
         onClick={submitComment}
+        display={['none', 'block']}
         sx={{
           position: 'absolute',
           top: 11,

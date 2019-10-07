@@ -98,13 +98,24 @@ class Header extends Component {
         flexDirection="row"
         alignItems="center"
         justifyContent="space-between"
-        height={[80, 98]}
+        height={[55, 98]}
         width={1}
         bg="background"
         sx={{ position: nav ? 'fixed' : 'relative', top: 0 }}
       >
         <Box as={Link} to="/">
-          <Box as="img" display="block" src="/logo-full.svg" alt="logo" />
+          <Box
+            as="img"
+            display={['none', 'block']}
+            src="/logo-full.svg"
+            alt="logo"
+          />
+          <Box
+            as="img"
+            display={['block', 'none']}
+            src="/logo.svg"
+            alt="logo"
+          />
         </Box>
         <Flex sx={{ display: ['flex', 'none'] }}>
           <Text

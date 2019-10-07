@@ -11,6 +11,7 @@ const headerButtonCss = p =>
       border: none;
       box-shadow: none;
       color: ${p.theme.colors.text3};
+      text-align: left;
 
       &:hover,
       &:focus {

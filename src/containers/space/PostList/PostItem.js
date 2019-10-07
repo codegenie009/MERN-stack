@@ -6,7 +6,11 @@ import uc from 'utils/uploadcare';
 function PostItem({ post, ...props }) {
   return (
     <Box variant="postthumb" {...props}>
-      <Image src={uc.thumb(post.fileUrl)} variant="postthumb" />
+      <Image
+        src={uc.thumb(post.fileUrl)}
+        display="block"
+        variant="postthumbimg"
+      />
     </Box>
   );
 }

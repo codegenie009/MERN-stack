@@ -13,13 +13,13 @@ function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
 
   return (
     <LoadingContainer loading={postsLoading}>
-      <Flex flexWrap="wrap" alignItems="center" mx={-20}>
+      <Flex flexWrap="wrap" alignItems="center" mx={[-10, -20]}>
         {posts.map(post => (
           <PostItem
             key={post._id}
             post={post}
-            mx={20}
-            my={20}
+            px={[5, 10]}
+            py={[5, 10]}
             onClick={() => setCurrentPost(post)}
           />
         ))}

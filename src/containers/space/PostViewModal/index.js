@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Box, Flex, Text, Image } from 'rebass';
 import SpaceActions, { SpaceSelectors } from 'redux/SpaceRedux';
-import { Modal, UserMention, Divider } from 'components/common';
+import { Modal, ModalHeader, UserMention, Divider } from 'components/common';
 import CommentList from 'containers/comment/CommentList';
 import CommentForm from 'containers/comment/CommentForm';
 import { getHumanizedDate } from 'helpers/datetime';
@@ -15,19 +15,22 @@ function PostViewModal({ space, post, onClose }) {
 
   return (
     <Modal isOpen onRequestClose={onClose}>
-      <Flex>
+      <ModalHeader onClose={onClose} display={['block', 'none']}>
+        Photo
+      </ModalHeader>
+      <Flex flexDirection={['column', 'row']}>
         <Flex
           alignItems="center"
           justifyContent="center"
-          height="70vh"
-          minWidth="30vw"
+          height={['initial', '70vh']}
+          minWidth={['initial', '30vw']}
           bg="background2"
         >
           <Image src={post.fileUrl} maxHeight="100%" />
         </Flex>
         <Flex
-          width={300}
-          height="70vh"
+          width={[1, 300]}
+          height={['initial', '70vh']}
           flexDirection="column"
           sx={{
             borderLeftColor: 'divider',
@@ -45,7 +48,7 @@ function PostViewModal({ space, post, onClose }) {
           </Box>
           <Divider />
           <CommentList space={space} post={post} flex={1} />
-          <Divider />
+          <Divider display={['none', 'block']} />
           <CommentForm space={space} post={post} />
         </Flex>
       </Flex>
