@@ -52,8 +52,8 @@ const theme = {
   },
   // rebass variants
   sizes: {
-    spacethumb: 196,
-    postthumb: 300
+    spacethumb: [150, 196],
+    postthumb: '33.33%'
   },
   text: {
     h1: {
@@ -160,6 +160,14 @@ const theme = {
       fontSize: 13,
       lineHeight: '16px',
       fontWeight: 600
+    },
+    modalheader: {
+      fontWeight: 'bold',
+      fontSize: [16, 30],
+      lineHeight: ['55px', '40px'],
+      pt: [0, 40],
+      px: [0, 50],
+      height: [55, 'initial']
     }
   },
   variants: {
@@ -194,13 +202,14 @@ const theme = {
       justifyContent: 'center'
     },
     spacethumb: {
-      width: 'spacethumb',
-      height: 'spacethumb',
+      width: [150, 196],
       borderRadius: 'default'
     },
     postthumb: {
       width: 'postthumb',
-      height: 'postthumb',
+      borderRadius: 'default'
+    },
+    postthumbimg: {
       borderRadius: 'default'
     },
     hasDivider: {
@@ -264,13 +273,15 @@ const theme = {
     primary: {
       variant: 'buttons.base',
       color: 'background',
-      bg: 'primary'
+      bg: 'primary',
+      width: ['100%', 'initial']
     },
     secondary: {
       variant: 'buttons.base',
       bg: 'transparent',
       color: 'primary',
-      fontWeight: 'medium'
+      fontWeight: 'medium',
+      width: ['100%', 'initial']
     },
     primarySquare: {
       variant: 'buttons.primary',
@@ -352,9 +363,14 @@ const theme = {
     naked: {
       border: 'none',
       outline: 'none',
-      px: 15,
-      py: 13,
-      fontSize: 13
+      px: [20, 15],
+      py: [6, 13],
+      fontSize: 13,
+      borderStyle: 'solid',
+      borderColor: 'divider',
+      borderRadius: '50px',
+      borderWidth: [1, 0],
+      bg: 'background'
     }
   },
   styles: {

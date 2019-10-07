@@ -1,5 +1,5 @@
 function thumb(orgUrl) {
-  return `${orgUrl}-/scale_crop/300x300/center/`;
+  return `${orgUrl}-/scale_crop/350x350/center/`;
 }
 
 export default {
