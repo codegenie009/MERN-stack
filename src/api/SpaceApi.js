@@ -21,6 +21,7 @@ export default token => {
   const create = space => api.post('', space);
   const update = (id, space) => api.put(id, space);
   const remove = id => api.delete(id);
+  const sendSms = (id, phone) => api.post(`${id}/send-sms`, { phone });
 
   return {
     list,
@@ -29,6 +30,7 @@ export default token => {
     get,
     create,
     update,
-    remove
+    remove,
+    sendSms
   };
 };
