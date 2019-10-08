@@ -13,11 +13,13 @@ import AuthRoutes from 'pages/auth';
 import SpaceRoutes from 'pages/space';
 import Invite from 'pages/invite';
 import AccountSpaces from 'pages/account/spaces';
+import heapInstall from 'utils/heap';
 
 // @TODO manage loading state of API with linear progress
 class App extends Component {
   componentDidMount() {
     this.startup();
+    heapInstall();
   }
 
   startup = async () => {
