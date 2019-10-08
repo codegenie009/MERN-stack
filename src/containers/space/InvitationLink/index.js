@@ -21,11 +21,12 @@ function InvitationLink({ slug }) {
     <FormGroup>
       <Label>Share this invite link with family and friends.</Label>
       <Flex alignItems="flex-start" flexDirection={['column', 'row']}>
-        <Input readOnly value={url} width={[1, 500]} mr={[0, 10]} mb={10} />
+        <Input readOnly value={url} minWidth={[1, 500]} mr={[0, 10]} mb={10} />
         <Button
           as={Clipboard}
           data-clipboard-text={url}
           width={[1, 160]}
+          minWidth="160px"
           px={15}
           icon="far fa-link"
           variant="secondarySquareSm"
