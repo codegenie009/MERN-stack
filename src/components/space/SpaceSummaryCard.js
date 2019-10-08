@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Flex, Text, Box, Image } from 'rebass';
+import { Flex, Text, Box, Image } from 'rebass';
 import uc from 'utils/uploadcare';
 
 const IMAGE = 'https://source.unsplash.com/random/196x196?people';
@@ -29,11 +29,11 @@ function SpaceSummaryCard({ space, children, ...rest }) {
           {space.description}
         </Text>
         {children}
-        {space.role === 'OWNER' && (
+        {/* {space.role === 'OWNER' && (
           <Button variant="secondary" ml={[0, 10]} mt={[10, 0]}>
             Settings
           </Button>
-        )}
+        )} */}
       </Box>
     </Flex>
   );
