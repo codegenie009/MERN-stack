@@ -7,5 +7,6 @@ export { default as AlertPanel } from './AlertPanel';
 export { default as HomeRow } from './HomeRow';
 export { default as UserMention } from './UserMention';
 export { default as Divider } from './Divider';
+export { default as MobileHeader } from './MobileHeader';
 export * from './Dropdown';
 export * from './Modal';
