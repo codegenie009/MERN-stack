@@ -5,11 +5,11 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 import { MainSelectors } from 'redux/MainRedux';
 import { goToPage } from 'utils/history';
 
-const withAuth = (WrappedComponent, authParams) => {
+const withAuth = (WrappedComponent, authParams, redirectUri) => {
   const AuthComponent = ({ isLoggedIn, user, ...props }) => {
     useEffect(() => {
       if (!isLoggedIn) {
-        goToPage('/auth/login', authParams);
+        goToPage(redirectUri || '/auth/login', authParams);
       }
     }, [isLoggedIn]);
 

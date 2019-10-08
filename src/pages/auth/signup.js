@@ -36,7 +36,7 @@ function Signup({ history, refreshProfile, setLogin }) {
       </Text>
       <SignupForm onSubmit={handleSignup} />
       <Text mt={20} textAlign="center">
-        Already have an Anecdote account?&nbsp;
+        Already have an Rembrance account?&nbsp;
         <Text
           as={Link}
           variant="boldlink"
