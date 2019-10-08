@@ -59,6 +59,7 @@ function Upload({ user, spaceId, addPosts }) {
         publicKey={process.env.REACT_APP_UPLOADCARE_PUBLIC_KEY}
         value={value}
         previewStep
+        preloader=""
         clearable
         crop="1:1"
         imagesOnly
