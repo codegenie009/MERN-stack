@@ -10,9 +10,9 @@ import { LoadingContainer } from 'components/common';
 import Home from 'pages/home';
 import SpaceCreate from 'pages/home/space-create';
 import AuthRoutes from 'pages/auth';
-import AccountRoutes from 'pages/account';
 import SpaceRoutes from 'pages/space';
 import Invite from 'pages/invite';
+import AccountSpaces from 'pages/account/spaces';
 
 // @TODO manage loading state of API with linear progress
 class App extends Component {
@@ -45,9 +45,8 @@ class App extends Component {
   renderUserRoutes() {
     return (
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={AccountSpaces} />
         <Route path="/auth" component={AuthRoutes} />
-        <Route path="/account" component={AccountRoutes} />
         <Route path="/space-create" component={SpaceCreate} />
         <Route path="/spaces/:slug" component={SpaceRoutes} />
         <Route exact path="/invite/:slug" component={Invite} />
