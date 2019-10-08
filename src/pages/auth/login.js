@@ -16,7 +16,7 @@ function Login({ history, refreshProfile, setLogin }) {
     setLogin(token, user);
     await refreshProfile();
 
-    history.push(redirectUri || '/account/spaces');
+    history.push(redirectUri || '/');
   };
 
   const handleLogin = async values => {

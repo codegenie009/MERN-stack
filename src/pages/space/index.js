@@ -8,7 +8,9 @@ import get from 'lodash/get';
 import request from 'api/request';
 import SpaceActions from 'redux/SpaceRedux';
 
+import SpacePostView from './view';
 import SpaceHome from './home';
+import SpaceInvite from './invite';
 
 function SpaceRoutes({ match, history, setSpace }) {
   const [loading, setLoading] = useState(true);
@@ -24,7 +26,7 @@ function SpaceRoutes({ match, history, setSpace }) {
         setSpace(resp.data);
       } else {
         // TODO handle error
-        history.push('/account/spaces');
+        history.push('/');
       }
       setLoading(false);
     }
@@ -37,7 +39,13 @@ function SpaceRoutes({ match, history, setSpace }) {
       {() => (
         <Switch>
           <Route exact path={`${prefix}`} component={SpaceHome} />
-          <Route render={() => <Redirect to="/account/spaces" />} />
+          <Route
+            exact
+            path={`${prefix}/posts/:postId`}
+            component={SpacePostView}
+          />
+          <Route exact path={`${prefix}/invite`} component={SpaceInvite} />
+          <Route render={() => <Redirect to="/" />} />
         </Switch>
       )}
     </LoadingContainer>

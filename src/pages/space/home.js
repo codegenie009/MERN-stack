@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'rebass';
 import { connect } from 'react-redux';
-import { Modal, ModalHeader, FluidContainer, Button } from 'components/common';
+import {
+  Modal,
+  ModalHeader,
+  MobileHeader,
+  FluidContainer,
+  Button
+} from 'components/common';
 import { SpaceSummaryCard } from 'components/space';
 import Upload from 'containers/space/Upload';
 import PostList from 'containers/space/PostList';
@@ -10,12 +16,22 @@ import PostViewModal from 'containers/space/PostViewModal';
 import InvitationLink from 'containers/space/InvitationLink';
 import TextLink from 'containers/space/TextLink';
 import { SpaceSelectors } from 'redux/SpaceRedux';
+import history from 'utils/history';
+import isMobile from 'utils/mobile';
 
 function SpaceHome({ space }) {
   const [invite, setInvite] = useState(false);
+  const handleInvite = () => {
+    if (isMobile()) {
+      history.push(`/spaces/${space.slug}/invite`);
+    } else {
+      setInvite(true);
+    }
+  };
 
   return (
     <Box>
+      <MobileHeader backLink="/">{space.name}</MobileHeader>
       <Box bg="background2">
         <FluidContainer py={[0, 60]}>
           <SpaceSummaryCard space={space} py={50}>
@@ -23,7 +39,7 @@ function SpaceHome({ space }) {
             <Button
               variant="secondary"
               icon="far fa-envelope"
-              onClick={() => setInvite(true)}
+              onClick={handleInvite}
               mt={[10, 0]}
               ml={[0, 10]}
             >

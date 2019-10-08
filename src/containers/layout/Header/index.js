@@ -49,7 +49,7 @@ class Header extends Component {
         label="Account"
         closeOnInsideClick
       >
-        <DropdownItem as={Link} to="/account/spaces">
+        <DropdownItem as={Link} to="/">
           My Memorials
         </DropdownItem>
         <DropdownItem onClick={this.onLogout}>Log Out</DropdownItem>
