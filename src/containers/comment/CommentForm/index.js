@@ -83,11 +83,11 @@ function CommentForm({
         variant="inputxs"
         disabled={!currentComment.content}
         onClick={submitComment}
-        display={['none', 'block']}
         sx={{
           position: 'absolute',
-          top: 11,
-          right: 10
+          top: [20, 11],
+          right: [40, 10],
+          width: 'initial'
         }}
       >
         Post
