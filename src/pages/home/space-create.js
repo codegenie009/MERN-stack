@@ -87,9 +87,13 @@ const mapDispatchToProps = dispatch => ({
 
 const enhance = compose(
   c =>
-    withAuth(c, {
-      redirect_uri: '/space-create'
-    }),
+    withAuth(
+      c,
+      {
+        redirect_uri: '/space-create'
+      },
+      '/auth/signup'
+    ),
   connect(
     null,
     mapDispatchToProps
