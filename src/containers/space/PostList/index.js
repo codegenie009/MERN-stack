@@ -4,9 +4,19 @@ import { connect } from 'react-redux';
 import { Flex } from 'rebass';
 import { LoadingContainer } from 'components/common';
 import SpaceActions, { SpaceSelectors } from 'redux/SpaceRedux';
+import isMobile from 'utils/mobile';
+import history from 'utils/history';
 import PostItem from './PostItem';
 
 function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
+  const handleViewPost = post => {
+    if (isMobile()) {
+      history.push(`/spaces/${space.slug}/posts/${post._id}`);
+    } else {
+      setCurrentPost(post);
+    }
+  };
+
   useEffect(() => {
     loadPosts(space._id);
   }, []);
@@ -20,7 +30,7 @@ function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
             post={post}
             px={[5, 10]}
             py={[5, 10]}
-            onClick={() => setCurrentPost(post)}
+            onClick={() => handleViewPost(post)}
           />
         ))}
       </Flex>
