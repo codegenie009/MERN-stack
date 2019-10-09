@@ -3,7 +3,7 @@ export default [
     title: 'Company',
     links: [
       { children: 'Home', to: '/' },
-      { children: 'Sign In', to: '/' },
+      { children: 'Log In', to: '/' },
       { children: 'Sign Up', to: '/' }
     ]
   },

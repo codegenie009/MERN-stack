@@ -33,12 +33,12 @@ class Header extends Component {
     }
   }
 
-  onCloseNav = this.setState({ nav: false });
+  onCloseNav = () => this.setState({ nav: false });
 
   onLogout = () => {
     const { setLogout } = this.props;
-    setLogout();
     this.onCloseNav();
+    setLogout();
   };
 
   renderAccountMenu() {
@@ -74,7 +74,7 @@ class Header extends Component {
         </HeaderNavItem>
         {!isLoggedIn && (
           <HeaderNavItem as={Link} to="/auth/login">
-            Sign In
+            Log In
           </HeaderNavItem>
         )}
         {isLoggedIn && this.renderAccountMenu()}
@@ -94,40 +94,55 @@ class Header extends Component {
     }
 
     return (
-      <FluidContainer
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="space-between"
-        height={[55, 98]}
-        width={1}
-        bg="background"
-        sx={{ position: nav ? 'fixed' : 'relative', top: 0 }}
+      <Box
+        sx={{
+          borderBottomWidth: 1,
+          borderBottomStyle: 'solid',
+          borderBottomColor: 'divider',
+          visibility: [
+            location.pathname.startsWith('/spaces') ? 'hidden' : 'visible',
+            'visible'
+          ]
+        }}
       >
-        <Box as={Link} to="/">
-          <Box
-            as="img"
-            display={['none', 'block']}
-            src="/logo-full.svg"
-            alt="logo"
-          />
-          <Box
-            as="img"
-            display={['block', 'none']}
-            src="/logo.svg"
-            alt="logo"
-          />
-        </Box>
-        <Flex sx={{ display: ['flex', 'none'] }}>
-          <Text
-            variant="headerlink"
-            fontSize="20px"
-            onClick={() => this.setState({ nav: !nav })}
-          >
-            <i className="far fa-bars" />
-          </Text>
-        </Flex>
-        {this.renderItems()}
-      </FluidContainer>
+        <FluidContainer
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between"
+          height={[55, 98]}
+          width={1}
+          bg="background"
+          sx={{
+            position: nav ? 'fixed' : 'relative',
+            top: 0
+          }}
+        >
+          <Box as={Link} to="/">
+            <Box
+              as="img"
+              display={['none', 'block']}
+              src="/logo-full.svg"
+              alt="logo"
+            />
+            <Box
+              as="img"
+              display={['block', 'none']}
+              src="/logo.svg"
+              alt="logo"
+            />
+          </Box>
+          <Flex sx={{ display: ['flex', 'none'] }}>
+            <Text
+              variant="headerlink"
+              fontSize="20px"
+              onClick={() => this.setState({ nav: !nav })}
+            >
+              <i className="far fa-bars" />
+            </Text>
+          </Flex>
+          {this.renderItems()}
+        </FluidContainer>
+      </Box>
     );
   }
 }
