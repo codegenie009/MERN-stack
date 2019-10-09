@@ -39,8 +39,8 @@ function Login({ history, refreshProfile, setLogin }) {
       </Text>
       <LoginForm onSubmit={handleLogin} />
       <Text textAlign="center" mt={20}>
-        Can't sign in?&nbsp;
-        <Text as={Link} variant="boldlink" to="/auth/request-reset-password">
+        Can't log in?&nbsp;
+        <Text as={Link} variant="boldlink" to="/auth/forgot-password">
           Reset Password
         </Text>
         .
