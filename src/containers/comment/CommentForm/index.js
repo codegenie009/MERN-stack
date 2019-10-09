@@ -61,10 +61,16 @@ function CommentForm({
   return (
     <Box
       sx={{
-        position: 'relative',
+        position: ['fixed', 'relative'],
+        bottom: [0, 'initial'],
+        left: [0, 'initial'],
+        right: [0, 'initial'],
         bg: ['background2', 'background'],
         py: [15, 0],
-        px: [25, 0]
+        px: [25, 0],
+        borderTopWidth: [1, 0],
+        borderTopStyle: 'solid',
+        borderTopColor: 'divider'
       }}
       {...props}
     >

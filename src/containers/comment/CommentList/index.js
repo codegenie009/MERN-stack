@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Flex } from 'rebass';
 import { LoadingContainer } from 'components/common';
 import CommentActions, { CommentSelectors } from 'redux/CommentRedux';
+import isMobile from 'utils/mobile';
 import CommentItem from './CommentItem';
 
 function CommentList({
@@ -20,7 +21,9 @@ function CommentList({
   }, []);
 
   useEffect(() => {
-    if (listRef.current) {
+    if (isMobile()) {
+      window.scrollTo(0, document.body.scrollHeight);
+    } else if (listRef.current) {
       listRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [comments.length]);
@@ -30,6 +33,7 @@ function CommentList({
       flexDirection="column"
       justifyContent="flex-end"
       overflowY="hidden"
+      pb={[65, 0]}
       {...rest}
     >
       <LoadingContainer loading={commentsLoading}>
@@ -40,11 +44,11 @@ function CommentList({
           maxHeight="100%"
           px={20}
           py={[comments.length > 0 ? 10 : 0, 10]}
-          ref={listRef}
         >
           {comments.map(comment => (
             <CommentItem key={comment._id} comment={comment} pb={5} />
           ))}
+          <div ref={listRef} />
         </Flex>
       </LoadingContainer>
     </Flex>
