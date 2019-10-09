@@ -68,7 +68,7 @@ function SpaceCreate({ refreshProfile }) {
   }
 
   return (
-    <AuthLayout py={[50, 100]}>
+    <AuthLayout py={[50, 100]} px={28}>
       <Text variant="pagetitle" mb={56}>
         Create Memorial
       </Text>
