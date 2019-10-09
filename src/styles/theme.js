@@ -203,13 +203,17 @@ const theme = {
     },
     spacethumb: {
       width: [150, 196],
-      borderRadius: 'default'
+      height: [150, 196],
+      borderRadius: 'default',
+      bg: 'divider'
     },
     postthumb: {
       width: 'postthumb',
+      height: 'postthumb',
       borderRadius: 'default'
     },
     postthumbimg: {
+      bg: 'divider',
       borderRadius: 'default'
     },
     hasDivider: {
@@ -246,7 +250,7 @@ const theme = {
       py: 12,
       fontSize: 15,
       lineHeight: '18px',
-      '&:hover,:focus': {
+      '&:hover': {
         color: 'background',
         bg: 'highlight'
       },
@@ -310,7 +314,7 @@ const theme = {
       variant: 'buttons.secondarySquare',
       borderColor: 'border',
       color: 'text3',
-      '&:hover,:focus': {
+      '&:hover': {
         bg: 'background2'
       }
     },

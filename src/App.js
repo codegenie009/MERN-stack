@@ -72,11 +72,15 @@ class App extends Component {
 
     return (
       <MainLayout>
-        <Header />
         <LoadingContainer loading={!loaded}>
-          {this.renderContent}
+          {() => (
+            <>
+              <Header />
+              {this.renderContent()}
+              <Footer />
+            </>
+          )}
         </LoadingContainer>
-        <Footer />
       </MainLayout>
     );
   }
