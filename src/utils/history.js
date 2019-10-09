@@ -30,4 +30,8 @@ export function goToPage(pathname, params) {
   });
 }
 
+export function silentPushState(newUrl) {
+  window.history.pushState('', '', newUrl);
+}
+
 export default browserHistory;
