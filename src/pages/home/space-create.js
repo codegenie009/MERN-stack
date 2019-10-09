@@ -48,7 +48,7 @@ function SpaceCreate({ refreshProfile }) {
 
   if (space) {
     return (
-      <AuthLayout py={[50, 100]}>
+      <AuthLayout py={[50, 100]} px={28}>
         <Text variant="pagetitle" mb={56}>
           Invite Members
         </Text>
