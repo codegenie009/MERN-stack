@@ -5,7 +5,7 @@ import { Flex } from 'rebass';
 import { LoadingContainer } from 'components/common';
 import SpaceActions, { SpaceSelectors } from 'redux/SpaceRedux';
 import isMobile from 'utils/mobile';
-import history from 'utils/history';
+import history, { silentPushState } from 'utils/history';
 import PostItem from './PostItem';
 
 function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
@@ -14,6 +14,7 @@ function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
       history.push(`/spaces/${space.slug}/posts/${post._id}`);
     } else {
       setCurrentPost(post);
+      silentPushState(`/spaces/${space.slug}/posts/${post._id}`);
     }
   };
 

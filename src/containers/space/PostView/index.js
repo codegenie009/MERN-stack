@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Box, Flex, Text, Image } from 'rebass';
+import { Box, Flex, Text } from 'rebass';
 import { SpaceSelectors } from 'redux/SpaceRedux';
 import { UserMention, Divider } from 'components/common';
 import CommentList from 'containers/comment/CommentList';
@@ -14,20 +14,25 @@ function PostView({ space, post }) {
       <Flex
         alignItems="center"
         justifyContent="center"
-        height={['initial', '70vh']}
-        minWidth={['initial', '30vw']}
+        width={[1, 600]}
+        height={['initial', 600]}
+        pt={['100%', 0]}
         bg="background2"
-      >
-        <Image src={post.fileUrl} maxHeight="100%" />
-      </Flex>
+        sx={{
+          backgroundImage: `url(${post.fileUrl})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'contain',
+          backgroundPosition: 'center'
+        }}
+      />
       <Flex
         width={[1, 300]}
-        height={['initial', '70vh']}
+        height={['initial', 600]}
         flexDirection="column"
         sx={{
           borderLeftColor: 'divider',
           borderLeftStyle: 'solid',
-          borderLeftWidth: [0, 2]
+          borderLeftWidth: [0, 1]
         }}
       >
         <Box px={20} py={10}>

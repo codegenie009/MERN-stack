@@ -34,7 +34,12 @@ function SpacePostView({ space, match }) {
       <MobileHeader backLink={`/spaces/${space.slug}`}>Photo</MobileHeader>
       <LoadingContainer loading={loading}>
         {() => (
-          <Box mx="auto" bg={['background', 'background2']} display="table">
+          <Box
+            mx="auto"
+            bg={['background', 'background2']}
+            display="table"
+            width={[1, 'initial']}
+          >
             <PostView post={post} />
           </Box>
         )}

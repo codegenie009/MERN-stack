@@ -4,15 +4,21 @@ import { connect } from 'react-redux';
 import SpaceActions, { SpaceSelectors } from 'redux/SpaceRedux';
 import { Modal, ModalHeader } from 'components/common';
 import PostView from 'containers/space/PostView';
+import { silentPushState } from 'utils/history';
 
-function PostViewModal({ post, onClose }) {
+function PostViewModal({ space, post, onClose }) {
   if (!post) {
     return null;
   }
 
+  const handleClose = () => {
+    onClose();
+    silentPushState(`/spaces/${space.slug}`);
+  };
+
   return (
-    <Modal isOpen onRequestClose={onClose}>
-      <ModalHeader onClose={onClose} display={['block', 'none']}>
+    <Modal isOpen onRequestClose={handleClose}>
+      <ModalHeader onClose={handleClose} display={['block', 'none']}>
         Photo
       </ModalHeader>
       <PostView post={post} />
@@ -21,11 +27,13 @@ function PostViewModal({ post, onClose }) {
 }
 
 PostViewModal.propTypes = {
+  space: PropTypes.object,
   post: PropTypes.object,
   onClose: PropTypes.func
 };
 
 const mapStatesToProps = state => ({
+  space: SpaceSelectors.selectCurrentSpace(state),
   post: SpaceSelectors.selectCurrentPost(state)
 });
 
