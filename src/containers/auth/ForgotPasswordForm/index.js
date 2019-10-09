@@ -6,13 +6,7 @@ import { Button, AlertPanel } from 'components/common';
 import { InputField } from 'components/formik';
 import schema from './schema';
 
-const INITIAL_VALUES = {
-  name: '',
-  email: '',
-  password: ''
-};
-
-class SignupForm extends Component {
+class ForgotPasswordForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,7 +18,6 @@ class SignupForm extends Component {
     const { onSubmit } = this.props;
 
     this.setState({ error: null });
-    actions.setSubmitting(true);
     try {
       await onSubmit(values);
     } catch (e) {
@@ -43,22 +36,9 @@ class SignupForm extends Component {
         <AlertPanel children={error} />
         <Field
           component={InputField}
-          name="name"
-          label="Name"
-          rightIcon={<i className="fal fa-user" />}
-        />
-        <Field
-          component={InputField}
           name="email"
-          label="Email"
+          label="Enter the email address you used to sign up for Anecdote."
           rightIcon={<i className="fal fa-envelope" />}
-        />
-        <Field
-          component={InputField}
-          name="password"
-          type="password"
-          label="Password"
-          rightIcon={<i className="fal fa-lock-alt" />}
         />
         <Button
           my={15}
@@ -68,7 +48,7 @@ class SignupForm extends Component {
           disabled={!isValid}
           type="submit"
         >
-          Sign Up
+          Send Link
         </Button>
       </Box>
     );
@@ -80,7 +60,8 @@ class SignupForm extends Component {
     return (
       <Formik
         initialValues={{
-          ...INITIAL_VALUES,
+          email: '',
+          password: '',
           ...initialValues
         }}
         onSubmit={this.handleSubmit}
@@ -91,10 +72,10 @@ class SignupForm extends Component {
   }
 }
 
-SignupForm.propTypes = {
+ForgotPasswordForm.propTypes = {
   formProps: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object
 };
 
-export default SignupForm;
+export default ForgotPasswordForm;

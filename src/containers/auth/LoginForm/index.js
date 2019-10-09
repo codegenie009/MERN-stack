@@ -48,9 +48,9 @@ class LoginForm extends Component {
           rightIcon={<i className="fal fa-lock-alt" />}
         />
         <Button
-          width={1}
           my={15}
           variant="primarySquare"
+          width={[1, 1]}
           loading={isSubmitting}
           disabled={!isValid}
           type="submit"

@@ -7,12 +7,11 @@ import { InputField } from 'components/formik';
 import schema from './schema';
 
 const INITIAL_VALUES = {
-  name: '',
-  email: '',
-  password: ''
+  password: '',
+  passwordConfirm: ''
 };
 
-class SignupForm extends Component {
+class ResetPasswordForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -43,21 +42,16 @@ class SignupForm extends Component {
         <AlertPanel children={error} />
         <Field
           component={InputField}
-          name="name"
-          label="Name"
-          rightIcon={<i className="fal fa-user" />}
-        />
-        <Field
-          component={InputField}
-          name="email"
-          label="Email"
-          rightIcon={<i className="fal fa-envelope" />}
-        />
-        <Field
-          component={InputField}
           name="password"
           type="password"
-          label="Password"
+          label="New Password"
+          rightIcon={<i className="fal fa-lock-alt" />}
+        />
+        <Field
+          component={InputField}
+          name="passwordConfirm"
+          type="password"
+          label="Confirm Password"
           rightIcon={<i className="fal fa-lock-alt" />}
         />
         <Button
@@ -68,7 +62,7 @@ class SignupForm extends Component {
           disabled={!isValid}
           type="submit"
         >
-          Sign Up
+          Set Password
         </Button>
       </Box>
     );
@@ -91,10 +85,10 @@ class SignupForm extends Component {
   }
 }
 
-SignupForm.propTypes = {
+ResetPasswordForm.propTypes = {
   formProps: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object
 };
 
-export default SignupForm;
+export default ResetPasswordForm;
