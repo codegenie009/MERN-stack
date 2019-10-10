@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Text } from 'rebass';
 
-const ModalHeader = ({ onClose, ...props }) => (
+const ModalHeader = ({ onClose, display, ...props }) => (
   <Box
+    display={display}
     sx={{
       position: 'relative',
       borderBottomWidth: 1,
@@ -16,14 +17,14 @@ const ModalHeader = ({ onClose, ...props }) => (
       <Text
         as="i"
         className="far fa-long-arrow-left"
-        fontSize="18px"
+        fontSize="24px"
         color="gray"
         display={['block', 'none']}
         sx={{
           cursor: 'pointer',
           position: 'absolute',
           left: 20,
-          top: 20
+          top: 27
         }}
         onClick={onClose}
       />
@@ -32,7 +33,7 @@ const ModalHeader = ({ onClose, ...props }) => (
       <Text
         as="i"
         className="far fa-times"
-        fontSize="18px"
+        fontSize="24px"
         color="gray"
         display={['none', 'block']}
         sx={{
@@ -48,7 +49,8 @@ const ModalHeader = ({ onClose, ...props }) => (
 );
 
 ModalHeader.propTypes = {
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  display: PropTypes.any
 };
 
 export default ModalHeader;

@@ -29,7 +29,7 @@ const MobileHeader = ({ backLink, ...props }) => (
         cursor: 'pointer',
         position: 'absolute',
         left: 20,
-        top: 20
+        top: 27
       }}
     />
   </Box>

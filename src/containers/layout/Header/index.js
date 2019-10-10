@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Box, Flex, Text } from 'rebass';
+import { Image, Box, Flex, Text } from 'rebass';
 import MainActions, { MainSelectors } from 'redux/MainRedux';
 import {
   FluidContainer,
@@ -47,6 +47,7 @@ class Header extends Component {
         variant="headerlink"
         mr={33}
         label="Account"
+        display={['none', 'block']}
         closeOnInsideClick
       >
         <DropdownItem as={Link} to="/">
@@ -68,17 +69,62 @@ class Header extends Component {
       >
         <HeaderNavItem
           as={MagicLink}
+          href="https://help.rembrance.com/hc/en-us/articles/360034369051-What-is-Rembrance-"
+        >
+          About
+        </HeaderNavItem>
+        <HeaderNavItem
+          as={MagicLink}
           href="https://help.rembrance.com/hc/en-us/articles/360034403771-What-are-the-pricing-plans-and-features-for-Rembrance-"
         >
           Pricing
         </HeaderNavItem>
+        <HeaderNavItem
+          as={MagicLink}
+          href="https://help.rembrance.com/hc/en-us"
+        >
+          Help
+        </HeaderNavItem>
         {!isLoggedIn && (
-          <HeaderNavItem as={Link} to="/auth/login">
+          <HeaderNavItem as={Link} to="/auth/login" display={['none', 'block']}>
             Log In
           </HeaderNavItem>
         )}
         {isLoggedIn && this.renderAccountMenu()}
-        <HeaderButton as={Link} to="/space-create">
+        <Box flex={1} />
+        {!isLoggedIn && (
+          <HeaderButton
+            as={Link}
+            display={['block', 'none']}
+            to="/auth/login"
+            mb={10}
+          >
+            Log In
+          </HeaderButton>
+        )}
+        {isLoggedIn && (
+          <HeaderButton
+            onClick={this.onLogout}
+            display={['block', 'none']}
+            mb={10}
+          >
+            Log Out
+          </HeaderButton>
+        )}
+        <HeaderButton
+          as={Link}
+          to="/space-create"
+          variant="secondary"
+          display={['none', 'block']}
+        >
+          Create Memorial
+        </HeaderButton>
+        <HeaderButton
+          as={Link}
+          to="/space-create"
+          variant="primary"
+          display={['block', 'none']}
+        >
           Create Memorial
         </HeaderButton>
       </HeaderNav>
@@ -95,6 +141,7 @@ class Header extends Component {
 
     return (
       <Box
+        bg="background"
         sx={{
           borderBottomWidth: 1,
           borderBottomStyle: 'solid',
@@ -109,35 +156,36 @@ class Header extends Component {
           flexDirection="row"
           alignItems="center"
           justifyContent="space-between"
-          height={[55, 98]}
+          height={70}
           width={1}
           bg="background"
           sx={{
             position: nav ? 'fixed' : 'relative',
+            zIndex: 10,
             top: 0
           }}
         >
           <Box as={Link} to="/">
-            <Box
-              as="img"
+            <Image
               display={['none', 'block']}
               src="/logo-full.svg"
+              height={18}
               alt="logo"
             />
-            <Box
-              as="img"
+            <Image
               display={['block', 'none']}
               src="/logo.svg"
+              height={18}
               alt="logo"
             />
           </Box>
           <Flex sx={{ display: ['flex', 'none'] }}>
             <Text
               variant="headerlink"
-              fontSize="20px"
+              fontSize="24px"
               onClick={() => this.setState({ nav: !nav })}
             >
-              <i className="far fa-bars" />
+              <i className={nav ? 'far fa-times' : 'far fa-bars'} />
             </Text>
           </Flex>
           {this.renderItems()}

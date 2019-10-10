@@ -28,37 +28,18 @@ function HeaderNav({ mobileVisible, onClose, ...rest }) {
       sx={{
         [maxMedias[0]]: {
           display: mobileVisible ? 'flex' : 'none',
-          position: 'absolute',
-          top: '100%',
-          width: '100%',
-          mx: -28,
+          position: 'fixed',
+          top: 70,
+          left: 0,
+          bottom: 0,
+          right: 0,
           px: 28,
           py: 20,
-          height: '100vh',
           flexDirection: 'column',
           alignItems: 'flex-start',
           borderTopWidth: 1,
           borderTopStyle: 'solid',
-          borderTopColor: 'border2',
-          '& > .m-dropdown': {
-            mb: 20
-          },
-          '& .m-dropdown-menu': {
-            position: 'relative',
-            top: 0,
-            px: 0,
-            py: 0,
-            border: 'none',
-            boxShadow: 'none'
-          },
-          '& .m-dropdown-item': {
-            color: 'text3',
-            fontWeight: 'medium'
-          },
-          '& .m-dropdown-item:hover': {
-            color: 'text',
-            backgroundColor: 'background'
-          }
+          borderTopColor: 'border2'
         }
       }}
       {...rest}
