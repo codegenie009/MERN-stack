@@ -25,7 +25,7 @@ function SpaceSummaryCard({ space, children, ...rest }) {
         <Text variant="h3" mb={[20, 15]} textAlign={['center', 'left']}>
           {space.name}
         </Text>
-        <Text variant="body4" mb={18}>
+        <Text variant="body4" mb={18} textAlign={['center', 'left']}>
           {space.description}
         </Text>
         {children}

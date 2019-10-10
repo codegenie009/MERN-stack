@@ -63,7 +63,7 @@ function InviteHome({
   }
 
   return (
-    <AuthLayout maxWidth={530} pt={50} pb={100}>
+    <AuthLayout maxWidth={530} pt={50} pb={100} px={28}>
       <Text variant="pagetitle" mb={20}>
         Welcome
       </Text>
