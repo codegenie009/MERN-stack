@@ -35,8 +35,8 @@ function Signup({ history, refreshProfile, setLogin }) {
         Sign Up
       </Text>
       <SignupForm onSubmit={handleSignup} />
-      <Text mt={20} textAlign="center">
-        Already have an Rembrance account?&nbsp;
+      <Text mt={20} textAlign="center" variant="helper">
+        Already have a Rembrance account?&nbsp;
         <Text
           as={Link}
           variant="boldlink"
@@ -46,7 +46,7 @@ function Signup({ history, refreshProfile, setLogin }) {
         </Text>
       </Text>
 
-      <Text textAlign="center">
+      <Text textAlign="center" variant="helper">
         By creating an account, you agree to the&nbsp;
         <Text
           as="a"

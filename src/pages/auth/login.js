@@ -38,14 +38,14 @@ function Login({ history, refreshProfile, setLogin }) {
         Log In
       </Text>
       <LoginForm onSubmit={handleLogin} />
-      <Text textAlign="center" mt={20}>
+      <Text textAlign="center" mt={20} variant="helper">
         Can't log in?&nbsp;
         <Text as={Link} variant="boldlink" to="/auth/forgot-password">
           Reset Password
         </Text>
         .
       </Text>
-      <Text textAlign="center">
+      <Text textAlign="center" variant="helper">
         Don't have an account?&nbsp;
         <Text
           as={Link}
