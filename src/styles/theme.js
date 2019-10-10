@@ -121,7 +121,7 @@ const theme = {
     helper: {
       fontWeight: 'regular',
       fontSize: 15,
-      lineHeight: '18px'
+      lineHeight: '22px'
     },
     boldlink: {
       color: 'text',
@@ -136,7 +136,7 @@ const theme = {
       textDecoration: 'underline'
     },
     headerlink: {
-      fontSize: 15,
+      fontSize: [18, 15],
       fontWeight: 'medium',
       color: 'text3',
       cursor: 'pointer',
@@ -164,10 +164,10 @@ const theme = {
     modalheader: {
       fontWeight: 'bold',
       fontSize: [16, 30],
-      lineHeight: ['55px', '40px'],
+      lineHeight: ['70px', '40px'],
       pt: [0, 40],
       px: [0, 50],
-      height: [55, 'initial']
+      height: [70, 'initial']
     }
   },
   variants: {
@@ -241,6 +241,7 @@ const theme = {
       outline: 'none',
       borderRadius: 'button',
       boxShadow: 'card',
+      userSelect: 'none',
       transition: 'all .3s ease-in-out',
       borderWidth: 1,
       borderStyle: 'solid',

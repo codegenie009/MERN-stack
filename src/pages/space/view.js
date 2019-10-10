@@ -7,6 +7,7 @@ import { LoadingContainer, MobileHeader } from 'components/common';
 import { SpaceSelectors } from 'redux/SpaceRedux';
 import PostView from 'containers/space/PostView';
 import request from 'api/request';
+import history from 'utils/history';
 
 function SpacePostView({ space, match }) {
   const postId = get(match, 'params.postId', '');
@@ -27,20 +28,28 @@ function SpacePostView({ space, match }) {
     }
 
     loadPost(postId);
+    document.body.className = 'gray-back';
+    return () => {
+      document.body.className = '';
+    };
   }, [postId, space._id]);
 
   return (
-    <Box>
+    <Box bg="background2">
       <MobileHeader backLink={`/spaces/${space.slug}`}>Photo</MobileHeader>
       <LoadingContainer loading={loading}>
         {() => (
           <Box
             mx="auto"
-            bg={['background', 'background2']}
+            bg={['background']}
             display="table"
             width={[1, 'initial']}
+            my={[0, 40]}
           >
-            <PostView post={post} />
+            <PostView
+              post={post}
+              onBack={() => history.push(`/spaces/${space.slug}`)}
+            />
           </Box>
         )}
       </LoadingContainer>

@@ -21,7 +21,7 @@ function PostViewModal({ space, post, onClose }) {
       <ModalHeader onClose={handleClose} display={['block', 'none']}>
         Photo
       </ModalHeader>
-      <PostView post={post} />
+      <PostView post={post} onBack={handleClose} />
     </Modal>
   );
 }

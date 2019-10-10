@@ -26,6 +26,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.gray-back {
+  background: #fbfbfb;
+}
+
+body,
+#root {
+  min-height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
 a {
   text-decoration: none;
 }

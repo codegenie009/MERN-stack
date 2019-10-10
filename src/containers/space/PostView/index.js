@@ -8,7 +8,7 @@ import CommentList from 'containers/comment/CommentList';
 import CommentForm from 'containers/comment/CommentForm';
 import { getHumanizedDate } from 'helpers/datetime';
 
-function PostView({ space, post }) {
+function PostView({ space, post, onBack }) {
   return (
     <Flex flexDirection={['column', 'row']}>
       <Flex
@@ -30,14 +30,25 @@ function PostView({ space, post }) {
         height={['initial', 600]}
         flexDirection="column"
         sx={{
-          borderLeftColor: 'divider',
-          borderLeftStyle: 'solid',
-          borderLeftWidth: [0, 1]
+          borderColor: 'divider',
+          borderStyle: 'solid',
+          borderWidth: [0, 1]
         }}
       >
         <Box px={20} py={10}>
-          <Text variant="caption">
-            Shared by <UserMention variant="caption" user={post.user} />
+          <Text variant="caption" lineHeight="14px" mb={5}>
+            <UserMention variant="caption" fontWeight="bold" user={post.user} />{' '}
+            added a photo to{' '}
+            <Text
+              variant="caption"
+              as="span"
+              fontWeight="bold"
+              sx={{ cursor: 'pointer' }}
+              onClick={onBack}
+            >
+              {space.name}
+            </Text>{' '}
+            memorial.
           </Text>
           <Text variant="subtitle" color="text3">
             {getHumanizedDate(post.createdAt)}
@@ -54,7 +65,8 @@ function PostView({ space, post }) {
 
 PostView.propTypes = {
   space: PropTypes.object,
-  post: PropTypes.object
+  post: PropTypes.object,
+  onBack: PropTypes.func
 };
 
 const mapStatesToProps = state => ({

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
-import { Text, Button } from 'rebass';
+import { withRouter, Link } from 'react-router-dom';
+import { Text, Box, Button } from 'rebass';
 import get from 'lodash/get';
 import { LoadingContainer } from 'components/common';
 import { AuthLayout } from 'containers/layout';
 import MainActions, { MainSelectors } from 'redux/MainRedux';
-import { goToPage } from 'utils/history';
+import { buildUrl, goToPage } from 'utils/history';
 import request from 'api/request';
 
 function InviteHome({
@@ -51,12 +51,8 @@ function InviteHome({
   };
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      goToPage('/auth/login', { redirect_uri: location.pathname });
-    } else {
-      loadSpace();
-    }
-  }, [isLoggedIn]);
+    loadSpace();
+  }, []);
 
   if (!space) {
     return (
@@ -67,33 +63,67 @@ function InviteHome({
   }
 
   return (
-    <AuthLayout pt={50} pb={100}>
+    <AuthLayout maxWidth={530} pt={50} pb={100}>
       <Text variant="pagetitle" mb={20}>
         Welcome
       </Text>
       <Text variant="h4" mb={20}>
         You're about to join a memorial for {space.name}
       </Text>
-      <Text mb={10}>
-        You will be joining with the account associated with&nbsp;
-        <Text fontWeight="bold" as="b">
-          {email}
-        </Text>
-        .
-      </Text>
-      <Text mb={10}>Is this the correct email address?</Text>
+      {isLoggedIn ? (
+        <Box>
+          <Text mb={10}>
+            You will be joining with the account associated with&nbsp;
+            <Text fontWeight="bold" as="b">
+              {email}
+            </Text>
+            .
+          </Text>
+          <Text mb={10}>Is this the correct email address?</Text>
 
-      <Button variant="primarySquare" mb={30} onClick={joinSpace}>
-        Yes, that's the right address.
-      </Button>
-      <Text mb={10}>
-        If that's not right, we can help you to switch to a different email
-        address by logging you out so you can sign up or log in to the right
-        account.
-      </Text>
-      <Button variant="secondarySquare" onClick={setLogout}>
-        Switch to a different address.
-      </Button>
+          <Button
+            variant="primarySquare"
+            width={[1, 1]}
+            mb={30}
+            onClick={joinSpace}
+          >
+            Yes, that's the right address.
+          </Button>
+          <Text mb={10}>
+            If that's not right, we can help you to switch to a different email
+            address by logging you out so you can sign up or log in to the right
+            account.
+          </Text>
+          <Button variant="secondarySquare" width={[1, 1]} onClick={setLogout}>
+            Switch to a different address.
+          </Button>
+        </Box>
+      ) : (
+        <Box>
+          <Text mb={10}>
+            To access the memorial, you must first create a Rembrance account.
+          </Text>
+
+          <Button
+            variant="primarySquare"
+            width={[1, 1]}
+            mb={30}
+            as={Link}
+            to={buildUrl('/auth/signup', { redirect_uri: location.pathname })}
+          >
+            Sign Up
+          </Button>
+          <Text mb={10}>Already have a Rembrance account?</Text>
+          <Button
+            variant="secondarySquare"
+            width={[1, 1]}
+            as={Link}
+            to={buildUrl('/auth/login', { redirect_uri: location.pathname })}
+          >
+            Log In
+          </Button>
+        </Box>
+      )}
     </AuthLayout>
   );
 }
