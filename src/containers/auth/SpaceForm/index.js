@@ -42,10 +42,10 @@ class SpaceForm extends Component {
           component={TextareaField}
           name="description"
           rows={3}
-          maxLength={250}
+          maxLength={150}
           label="Tribute"
           sublabel="(Optional)"
-          helpText="This will appear at the top of the memorial page. Limit 250 characters."
+          helpText="This will appear at the top of the memorial page. Limit 150 characters."
         />
         <Field
           component={FileUploadField}
