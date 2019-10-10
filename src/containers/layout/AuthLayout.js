@@ -3,7 +3,7 @@ import { FluidContainer } from 'components/common';
 
 const AuthLayout = ({ ...props }) => (
   <FluidContainer
-    maxWidth={690}
+    maxWidth={630}
     width={1}
     px={0}
     alignItems="stretch"
