@@ -9,7 +9,7 @@ function Home() {
     <Content py={0} maxWidth="100%" px={0}>
       <FluidContainer alignItems="center" display="flex" py={[56, 112]}>
         <Text as="h1" variant="h1" mb={40}>
-          The hub for family memories.
+          Beautiful, online memorials
         </Text>
         <Text
           maxWidth={900}
@@ -18,9 +18,8 @@ function Home() {
           mb={40}
           textAlign="center"
         >
-          Keep family photos and videos in a private, central space — for free.
-          Bring everyone together to view, share, and comment on beautiful
-          memories.
+          Celebrate a life through a private, online memorial — for free. Add
+          photos, videos, and comments to commemorate with friends and family.
         </Text>
         <Button
           as={Link}
