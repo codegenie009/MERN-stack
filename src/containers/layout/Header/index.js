@@ -143,7 +143,7 @@ class Header extends Component {
       <Box
         bg="background"
         sx={{
-          borderBottomWidth: 1,
+          borderBottomWidth: location.pathname === '/' ? 0 : 1,
           borderBottomStyle: 'solid',
           borderBottomColor: 'divider',
           visibility: [
@@ -160,7 +160,7 @@ class Header extends Component {
           width={1}
           bg="background"
           sx={{
-            position: nav ? 'fixed' : 'relative',
+            position: [nav ? 'fixed' : 'relative', 'static'],
             zIndex: 10,
             top: 0
           }}
