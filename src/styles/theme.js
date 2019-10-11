@@ -48,7 +48,8 @@ const theme = {
   },
   shadows: {
     card: '2px 2px 10px rgba(0, 0, 0, 0.03)',
-    card2: '0px 0px 6px rgba(0, 0, 0, 0.07)'
+    card2: '0px 0px 6px rgba(0, 0, 0, 0.07)',
+    homeimg: '0px 0px 15px rgba(0, 0, 0, 0.07)'
   },
   // rebass variants
   sizes: {

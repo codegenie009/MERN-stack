@@ -7,7 +7,7 @@ import { Content } from 'containers/layout';
 function Home() {
   return (
     <Content py={0} maxWidth="100%" px={0}>
-      <FluidContainer alignItems="center" display="flex" py={[56, 112]}>
+      <FluidContainer alignItems="center" display="flex" pt={[56, 112]}>
         <Text as="h1" variant="h1" mb={40}>
           Beautiful, online memorials
         </Text>
@@ -16,7 +16,7 @@ function Home() {
           variant="body3"
           color="text3"
           mb={40}
-          textAlign="center"
+          textAlign={['left', 'center']}
         >
           Celebrate a life through a private, online memorial — for free. Add
           photos, videos, and comments to commemorate with friends and family.
@@ -30,7 +30,12 @@ function Home() {
         >
           Create Memorial
         </Button>
-        <Image variant="imagecard" width={1} src="/Rembrance.png" />
+        <Image
+          variant="imagecard"
+          width={1}
+          src="/Rembrance.png"
+          sx={{ boxShadow: 'homeimg', zIndex: -1 }}
+        />
       </FluidContainer>
     </Content>
   );

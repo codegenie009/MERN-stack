@@ -12,6 +12,7 @@ function SimpleFooter() {
         borderTopWidth: 1,
         borderTopStyle: 'solid'
       }}
+      bg="background"
       py={50}
       alignItems="center"
       justifyContent="center"

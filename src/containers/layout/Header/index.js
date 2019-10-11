@@ -183,6 +183,7 @@ class Header extends Component {
             <Text
               variant="headerlink"
               fontSize="24px"
+              color="brand"
               onClick={() => this.setState({ nav: !nav })}
             >
               <i className={nav ? 'far fa-times' : 'far fa-bars'} />
