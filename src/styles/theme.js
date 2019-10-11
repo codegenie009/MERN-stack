@@ -110,12 +110,12 @@ const theme = {
     },
     caption: {
       fontWeight: 'medium',
-      fontSize: 11,
+      fontSize: 13,
       lineHeight: '20px'
     },
     subtitle: {
       fontWeight: 'medium',
-      fontSize: 11,
+      fontSize: 13,
       lineHeight: '17px'
     },
     helper: {
