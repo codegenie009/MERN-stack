@@ -37,7 +37,7 @@ class ForgotPasswordForm extends Component {
         <Field
           component={InputField}
           name="email"
-          label="Enter the email address you used to sign up for Anecdote."
+          label="Enter the email address you used to sign up for Rembrance."
           rightIcon={<i className="fal fa-envelope" />}
         />
         <Button
