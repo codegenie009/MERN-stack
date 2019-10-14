@@ -1,5 +1,6 @@
 import { createReducer, createActions } from 'reduxsauce';
 import request from 'api/request';
+import MainActions from './MainRedux';
 
 /* --------------------- Types and Action Creators ---------------- */
 const { Types, Creators } = createActions({
@@ -34,6 +35,7 @@ Creators.loadPosts = spaceId => {
     }
 
     dispatch(Creators.setPostsLoading(false));
+    dispatch(MainActions.setLoading(false));
   };
 };
 

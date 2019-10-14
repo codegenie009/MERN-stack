@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'rebass';
 import { connect } from 'react-redux';
@@ -7,8 +7,13 @@ import { MobileHeader, Button } from 'components/common';
 import InvitationLink from 'containers/space/InvitationLink';
 import TextLink from 'containers/space/TextLink';
 import { SpaceSelectors } from 'redux/SpaceRedux';
+import withLoading from 'hocs/withLoading';
 
-function SpaceInvite({ space }) {
+function SpaceInvite({ space, setOverlayLoading }) {
+  useEffect(() => {
+    setOverlayLoading(false);
+  }, []);
+
   return (
     <Box>
       <MobileHeader backLink={`/spaces/${space.slug}`}>
@@ -31,11 +36,12 @@ function SpaceInvite({ space }) {
 }
 
 SpaceInvite.propTypes = {
-  space: PropTypes.object.isRequired
+  space: PropTypes.object.isRequired,
+  setOverlayLoading: PropTypes.func
 };
 
 const mapStatesToProps = state => ({
   space: SpaceSelectors.selectCurrentSpace(state)
 });
 
-export default connect(mapStatesToProps)(SpaceInvite);
+export default withLoading(connect(mapStatesToProps)(SpaceInvite));

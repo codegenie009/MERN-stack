@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import MainActions, { MainSelectors } from 'redux/MainRedux';
-import { MainLayout, Footer, Header } from 'containers/layout';
+import { MainLayout, Footer, Header, LoadingOverlay } from 'containers/layout';
 import { LoadingContainer } from 'components/common';
 
 import Home from 'pages/home';
@@ -24,7 +24,7 @@ class App extends Component {
 
   startup = async () => {
     const { setLoaded, refreshProfile } = this.props;
-    const token = Cookies.get('memorial-token');
+    const token = Cookies.get('kindrance-token');
 
     if (token) {
       await refreshProfile();
@@ -68,10 +68,11 @@ class App extends Component {
   };
 
   render() {
-    const { loaded } = this.props;
+    const { loaded, loading } = this.props;
 
     return (
       <MainLayout>
+        <LoadingOverlay loading={loading} />
         <LoadingContainer loading={!loaded}>
           {() => (
             <>
@@ -88,7 +89,7 @@ class App extends Component {
 
 App.propTypes = {
   loaded: PropTypes.bool,
-  // loading: PropTypes.bool,
+  loading: PropTypes.bool,
   isLoggedin: PropTypes.bool,
   setLoaded: PropTypes.func,
   refreshProfile: PropTypes.func

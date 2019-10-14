@@ -7,18 +7,20 @@ import { LoadingContainer } from 'components/common';
 import get from 'lodash/get';
 import request from 'api/request';
 import SpaceActions from 'redux/SpaceRedux';
+import withLoading from 'hocs/withLoading';
 
 import SpacePostView from './view';
 import SpaceHome from './home';
 import SpaceInvite from './invite';
 
-function SpaceRoutes({ match, history, setSpace }) {
+function SpaceRoutes({ match, history, setSpace, setOverlayLoading }) {
   const [loading, setLoading] = useState(true);
   const slug = get(match, 'params.slug', '');
   const { url: prefix } = match;
 
   useEffect(() => {
     async function loadSpace() {
+      setOverlayLoading(true);
       setLoading(true);
       const resp = await request('space', 'get', [slug]);
 
@@ -55,6 +57,7 @@ function SpaceRoutes({ match, history, setSpace }) {
 SpaceRoutes.propTypes = {
   match: PropTypes.object,
   history: PropTypes.object,
+  setOverlayLoading: PropTypes.func,
   setSpace: PropTypes.func
 };
 
@@ -64,6 +67,7 @@ const mapDispatchToProps = dispatch => ({
 
 const enhance = compose(
   withRouter,
+  withLoading,
   connect(
     null,
     mapDispatchToProps

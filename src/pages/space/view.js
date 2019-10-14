@@ -8,8 +8,9 @@ import { SpaceSelectors } from 'redux/SpaceRedux';
 import PostView from 'containers/space/PostView';
 import request from 'api/request';
 import history from 'utils/history';
+import withLoading from 'hocs/withLoading';
 
-function SpacePostView({ space, match }) {
+function SpacePostView({ space, match, setOverlayLoading }) {
   const postId = get(match, 'params.postId', '');
   const [loading, setLoading] = useState(true);
   const [post, setPost] = useState(null);
@@ -25,6 +26,7 @@ function SpacePostView({ space, match }) {
 
       // @TODO else redirect 404
       setLoading(false);
+      setOverlayLoading(false);
     }
 
     loadPost(postId);
@@ -59,6 +61,7 @@ function SpacePostView({ space, match }) {
 
 SpacePostView.propTypes = {
   space: PropTypes.object.isRequired,
+  setOverlayLoading: PropTypes.func,
   match: PropTypes.object
 };
 
@@ -66,4 +69,4 @@ const mapStatesToProps = state => ({
   space: SpaceSelectors.selectCurrentSpace(state)
 });
 
-export default connect(mapStatesToProps)(SpacePostView);
+export default withLoading(connect(mapStatesToProps)(SpacePostView));

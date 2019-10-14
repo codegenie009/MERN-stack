@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'rebass';
 import { connect } from 'react-redux';
@@ -18,8 +18,9 @@ import TextLink from 'containers/space/TextLink';
 import { SpaceSelectors } from 'redux/SpaceRedux';
 import history from 'utils/history';
 import isMobile from 'utils/mobile';
+import withLoading from 'hocs/withLoading';
 
-function SpaceHome({ space }) {
+function SpaceHome({ space, setOverlayLoading }) {
   const [invite, setInvite] = useState(false);
   const handleInvite = () => {
     if (isMobile()) {
@@ -28,6 +29,10 @@ function SpaceHome({ space }) {
       setInvite(true);
     }
   };
+
+  useEffect(() => {
+    setOverlayLoading(false);
+  }, []);
 
   return (
     <Box>
@@ -73,11 +78,12 @@ function SpaceHome({ space }) {
 }
 
 SpaceHome.propTypes = {
-  space: PropTypes.object.isRequired
+  space: PropTypes.object.isRequired,
+  setOverlayLoading: PropTypes.func
 };
 
 const mapStatesToProps = state => ({
   space: SpaceSelectors.selectCurrentSpace(state)
 });
 
-export default connect(mapStatesToProps)(SpaceHome);
+export default withLoading(connect(mapStatesToProps)(SpaceHome));

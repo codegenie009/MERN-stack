@@ -28,11 +28,13 @@ Creators.setLogout = () => {
 
 Creators.refreshProfile = () => {
   return async dispatch => {
+    dispatch(Creators.setLoading(true));
     const resp = await request('profile', 'get');
     if (resp.ok) {
       dispatch(Creators.setUser(resp.data));
     }
 
+    dispatch(Creators.setLoading(false));
     return resp.data;
   };
 };
