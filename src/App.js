@@ -24,7 +24,7 @@ class App extends Component {
 
   startup = async () => {
     const { setLoaded, refreshProfile } = this.props;
-    const token = Cookies.get('kindrance-token');
+    const token = Cookies.get('memorial-token');
 
     if (token) {
       await refreshProfile();
