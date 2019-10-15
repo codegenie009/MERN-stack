@@ -134,7 +134,8 @@ const theme = {
     },
     link: {
       color: 'link',
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      cursor: 'pointer'
     },
     headerlink: {
       fontSize: [18, 15],

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Flex } from 'rebass';
+import { Flex, Text } from 'rebass';
 import { LoadingContainer } from 'components/common';
 import SpaceActions, { SpaceSelectors } from 'redux/SpaceRedux';
 import isMobile from 'utils/mobile';
 import history, { silentPushState } from 'utils/history';
+import Upload from '../Upload';
 import PostItem from './PostItem';
 
 function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
@@ -25,6 +26,21 @@ function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
   return (
     <LoadingContainer loading={postsLoading}>
       <Flex flexWrap="wrap" alignItems="center" mx={[-10, -20]}>
+        <Text>
+          <Upload spaceId={space._id}>
+            {widgetApi => (
+              <Text
+                onClick={() => widgetApi.current.openDialog()}
+                variant="link"
+                as="span"
+                mr={5}
+              >
+                Upload
+              </Text>
+            )}
+          </Upload>
+          the first photo or video.
+        </Text>
         {posts.map(post => (
           <PostItem
             key={post._id}

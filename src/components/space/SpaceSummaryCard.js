@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Flex, Text, Box, Image } from 'rebass';
 import uc from 'utils/uploadcare';
 
-const IMAGE = 'https://source.unsplash.com/random/196x196?people';
-
 function SpaceSummaryCard({ space, children, ...rest }) {
   return (
     <Flex
@@ -15,12 +13,14 @@ function SpaceSummaryCard({ space, children, ...rest }) {
       mx={[-28, 0]}
       {...rest}
     >
-      <Image
-        src={space.image ? uc.thumb(space.image) : IMAGE}
-        variant="spacethumb"
-        mr={[0, 45]}
-        mb={[20, 0]}
-      />
+      {space.image && (
+        <Image
+          src={uc.thumb(space.image)}
+          variant="spacethumb"
+          mr={[0, 45]}
+          mb={[20, 0]}
+        />
+      )}
       <Box flex={1} width={1}>
         <Text variant="h3" mb={[20, 15]} textAlign={['center', 'left']}>
           {space.name}

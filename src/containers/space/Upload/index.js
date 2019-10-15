@@ -7,7 +7,7 @@ import { Button } from 'components/common';
 import SpaceActions from 'redux/SpaceRedux';
 import { MainSelectors } from 'redux/MainRedux';
 
-function Upload({ user, spaceId, addPosts }) {
+function Upload({ user, spaceId, addPosts, children }) {
   const widgetApi = useRef();
   const [value, setValue] = useState(null);
 
@@ -45,14 +45,18 @@ function Upload({ user, spaceId, addPosts }) {
 
   return (
     <>
-      <Button
-        variant="primary"
-        icon="fas fa-camera"
-        loading={!!value}
-        onClick={() => widgetApi.current.openDialog()}
-      >
-        Upload
-      </Button>
+      {children ? (
+        children(widgetApi, value)
+      ) : (
+        <Button
+          variant="primary"
+          icon="fas fa-camera"
+          loading={!!value}
+          onClick={() => widgetApi.current.openDialog()}
+        >
+          Upload
+        </Button>
+      )}
       <Widget
         id="file"
         ref={widgetApi}
@@ -74,6 +78,7 @@ function Upload({ user, spaceId, addPosts }) {
 }
 
 Upload.propTypes = {
+  children: PropTypes.func,
   user: PropTypes.object.isRequired,
   spaceId: PropTypes.string.isRequired,
   addPosts: PropTypes.func.isRequired

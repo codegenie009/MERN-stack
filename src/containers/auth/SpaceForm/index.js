@@ -51,6 +51,7 @@ class SpaceForm extends Component {
           component={FileUploadField}
           name="image"
           label="Photo"
+          sublabel="(Optional)"
           onChangeFile={photoFile => this.setState({ photoFile })}
         />
         <Box mt={56}>
