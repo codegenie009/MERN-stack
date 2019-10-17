@@ -26,7 +26,7 @@ function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
   return (
     <LoadingContainer loading={postsLoading}>
       <Flex flexWrap="wrap" alignItems="center" mx={[-10, -20]}>
-        {posts.length > 0 && (
+        {!posts.length && (
           <Text>
             <Upload spaceId={space._id}>
               {widgetApi => (
