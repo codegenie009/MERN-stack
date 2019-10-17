@@ -26,21 +26,23 @@ function PostList({ space, loadPosts, posts, postsLoading, setCurrentPost }) {
   return (
     <LoadingContainer loading={postsLoading}>
       <Flex flexWrap="wrap" alignItems="center" mx={[-10, -20]}>
-        <Text>
-          <Upload spaceId={space._id}>
-            {widgetApi => (
-              <Text
-                onClick={() => widgetApi.current.openDialog()}
-                variant="link"
-                as="span"
-                mr={5}
-              >
-                Upload
-              </Text>
-            )}
-          </Upload>
-          the first photo or video.
-        </Text>
+        {posts.length > 0 && (
+          <Text>
+            <Upload spaceId={space._id}>
+              {widgetApi => (
+                <Text
+                  onClick={() => widgetApi.current.openDialog()}
+                  variant="link"
+                  as="span"
+                  mr={5}
+                >
+                  Upload
+                </Text>
+              )}
+            </Upload>
+            the first photo or video.
+          </Text>
+        )}
         {posts.map(post => (
           <PostItem
             key={post._id}
