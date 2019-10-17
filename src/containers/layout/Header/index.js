@@ -67,7 +67,7 @@ class Header extends Component {
         mobileVisible={nav}
         onClose={() => this.setState({ nav: false })}
       >
-        <HeaderNavItem
+        {/* <HeaderNavItem
           as={MagicLink}
           href="https://help.rembrance.com/hc/en-us/articles/360034369051-What-is-Rembrance-"
         >
@@ -78,7 +78,7 @@ class Header extends Component {
           href="https://help.rembrance.com/hc/en-us/articles/360034403771-What-are-the-pricing-plans-and-features-for-Rembrance-"
         >
           Pricing
-        </HeaderNavItem>
+        </HeaderNavItem> */}
         <HeaderNavItem
           as={MagicLink}
           href="https://help.rembrance.com/hc/en-us"
