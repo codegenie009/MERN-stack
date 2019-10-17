@@ -8,7 +8,7 @@ function SpaceSummaryCard({ space, children, ...rest }) {
     <Flex
       variant="hasDivider"
       flexDirection={['column', 'row']}
-      alignItems={['center', 'flex-start']}
+      alignItems="center"
       px={[28, 0]}
       mx={[-28, 0]}
       {...rest}
