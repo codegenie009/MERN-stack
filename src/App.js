@@ -13,6 +13,7 @@ import AuthRoutes from 'pages/auth';
 import SpaceRoutes from 'pages/space';
 import Invite from 'pages/invite';
 import AccountSpaces from 'pages/account/spaces';
+import AdminRoutes from 'pages/admin';
 import heapInstall from 'utils/heap';
 import hotjarInstall from 'utils/hotjar';
 
@@ -53,6 +54,7 @@ class App extends Component {
         <Route path="/auth" component={AuthRoutes} />
         <Route path="/space-create" component={SpaceCreate} />
         <Route path="/spaces/:slug" component={SpaceRoutes} />
+        <Route path="/admin" component={AdminRoutes} />
         <Route exact path="/invite/:slug" component={Invite} />
         <Route render={() => <Redirect to="/" />} />
       </Switch>

@@ -43,6 +43,10 @@ a {
   text-decoration: none;
 }
 
+thead td {
+  font-weight: 800;
+}
+
 .ReactModal__Body--open {
   overflow: hidden;
 }

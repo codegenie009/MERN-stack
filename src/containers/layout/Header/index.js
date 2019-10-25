@@ -42,6 +42,7 @@ class Header extends Component {
   };
 
   renderAccountMenu() {
+    const { user } = this.props;
     return (
       <DropdownButton
         variant="headerlink"
@@ -53,6 +54,11 @@ class Header extends Component {
         <DropdownItem as={Link} to="/">
           My Memorials
         </DropdownItem>
+        {user.role === 'ADMIN' && (
+          <DropdownItem as={Link} to="/admin/spaces">
+            Admin
+          </DropdownItem>
+        )}
         <DropdownItem onClick={this.onLogout}>Log Out</DropdownItem>
       </DropdownButton>
     );
@@ -199,7 +205,7 @@ class Header extends Component {
 Header.propTypes = {
   isLoggedIn: PropTypes.bool,
   location: PropTypes.object,
-  // user: PropTypes.object,
+  user: PropTypes.object,
   setLogout: PropTypes.func
 };
 
