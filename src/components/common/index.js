@@ -10,3 +10,4 @@ export { default as Divider } from './Divider';
 export { default as MobileHeader } from './MobileHeader';
 export * from './Dropdown';
 export * from './Modal';
+export * from './Table';
